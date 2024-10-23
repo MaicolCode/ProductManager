@@ -1,7 +1,9 @@
 import express from 'express'
 
-const router = express.Router()
+const salesRouter = express.Router()
 
-router.get('/sales', (req, res) => {
+salesRouter.get('/', (req, res) => {
   res.send('Hola bienvenido a la API para la gestion de ventas!')
 })
+
+export default salesRouter
