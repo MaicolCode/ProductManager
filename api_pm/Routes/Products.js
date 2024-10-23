@@ -2,7 +2,7 @@ import express from 'express'
 
 const router = express.Router()
 
-router.get('/productos', (req, res) => {
+router.get('/products', (req, res) => {
   res.send('Hola bienvenido a la API para la gestion de productos!')
 })
 
