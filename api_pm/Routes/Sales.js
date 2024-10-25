@@ -3,22 +3,24 @@ import express from 'express'
 const salesRouter = express.Router()
 
 salesRouter.get('/', (req, res) => {
-  res.send('Hola bienvenido a la API para la gestion de ventas!')
+  res.json({ message: 'Hola bienvenido a la API para la gestion de ventas!' })
 })
 
-salesRouter.get('/sales/:id', (req, res) => {
-  res.send('Se esta buscando una venta!')
+salesRouter.get('/:id', (req, res) => {
+  const { id } = req.params
+  console.log(id)
+  res.json({ sales_id: id })
 })
 
 salesRouter.post('/sales', (req, res) => {
   res.send('Hola bienvenido a la API para la gestion de ventas!')
 })
 
-salesRouter.put('/sales/:id', (req, res) => {
+salesRouter.put('/:id', (req, res) => {
   res.send('Hola bienvenido a la API para la gestion de ventas!')
 })
 
-salesRouter.delete('/sales/:id', (req, res) => {
+salesRouter.delete('/:id', (req, res) => {
   res.send('Hola bienvenido a la API para la gestion de ventas!')
 })
 
