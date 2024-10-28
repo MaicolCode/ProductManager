@@ -1,86 +1,39 @@
-import mysql from 'mysql2/promise'
-
-// DB Config
-const config = {
-  host: 'localhost',
-  user: 'root',
-  password: 'MaicolCodea',
-  database: 'tech_db',
-  port: 3306
-}
-
-const connection = await mysql.createConnection(config)
+import Product from '../Models/Product.js'
 
 export default class ProductController {
-  static async getAll(req, res) {
-    const [products] = await connection.query('SELECT * FROM products')
+  static async getAll (req, res) {
+    const result = await Product.getAll()
     return res.json({
-      products
+      result
     })
   }
 
-  static async getById(req, res) {
+  static async getById (req, res) {
     const { id } = req.params
-    const [product] = await connection.query(
-      'SELECT * FROM products WHERE id = ?',
-      [id]
-    )
-    return res.json({ product_id: product })
-  }
-
-  static async create(req, res) {
-    const { name, price, quantity } = req.body
-
-    try {
-      await connection.query(
-        'INSERT INTO products (name, price, quantity) VALUES (?, ?, ?)',
-        [name, price, quantity]
-      )
-    } catch (error) {
-      return res.status(400).json({ error: 'Error al insertar producto' })
-    }
-    const [product] = await connection.query('SELECT * FROM products')
-    return res.json({ product: product[product.length - 1] })
-  }
-
-  static async update(req, res) {
-    const { id } = req.params
-    const data = req.body
-
-    try {
-      await connection.query('UPDATE products SET ? WHERE id = ?', [data, id])
-    } catch (error) {
-      return res.status(400).json({ error: 'Error al actualizar el producto' })
-    }
-
-    const [product] = await connection.query(
-      'SELECT * FROM products WHERE id = ?',
-      [id]
-    )
-    if (product.length === 0) {
-      return res.status(404).json({ error: 'Producto no encontrado' })
-    }
-
+    const product = await Product.getById(id)
     return res.json({ product })
   }
 
-  static async delete(req, res) {
+  static async create (req, res) {
+    const { name, price, quantity } = req.body
+
+    const result = await Product.create(name, price, quantity)
+    return res.json({ result })
+  }
+
+  static async update (req, res) {
     const { id } = req.params
-    const [product] = await connection.query(
-      'SELECT * FROM products WHERE id = ?',
-      [id]
-    )
+    const data = req.body
 
-    if (product.length === 0) {
-      return res.status(404).json({ error: 'Producto no encontrado' })
-    }
+    const result = await Product.update(id, data)
 
-    try {
-      await connection.query('DELETE FROM products WHERE id = ?', [id])
-    } catch (error) {
-      return res.status(400).json({ error: 'Error al eliminar producto' })
-    }
+    return res.json({ result })
+  }
 
-    res.json({ message: 'Producto eliminado con exito' })
+  static async delete (req, res) {
+    const { id } = req.params
+    const result = await Product.delete(id)
+
+    res.json({ result })
   }
 }
