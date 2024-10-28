@@ -4,3 +4,25 @@ GET http://localhost:3000/products
 ### Obtencion de un producto en particular.
 GET http://localhost:3000/products/2
 
+### Creacion de un producto.
+POST http://localhost:3000/products
+Content-Type: application/json
+
+{
+  "name": "Pasta Terminca",
+  "price": 5,
+  "quantity": 10
+}
+
+### Eliminacion de un producto.
+DELETE http://localhost:3000/products/11
+
+### Modificacion de un producto.
+PUT http://localhost:3000/products/2
+Content-Type: application/json
+
+{
+  "name": "Pasta Terminca",
+  "price": 5,
+  "quantity": 10
+}

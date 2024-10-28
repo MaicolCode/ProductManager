@@ -30,16 +30,43 @@ productRouter.get('/:id', async (req, res) => {
   res.json({ product_id: product })
 })
 
-productRouter.post('/', (req, res) => {
-  res.send('Hola bienvenido a la API para la gestion de productos!')
+productRouter.post('/', async (req, res) => {
+  const { name, price, quantity } = req.body
+
+  try {
+    await connection.query(
+      'INSERT INTO products (name, price, quantity) VALUES (?, ?, ?)',
+      [name, price, quantity]
+    )
+  } catch (error) {
+    return res.status(400).json({ error: 'Error al insertar producto' })
+  }
+  const [product] = await connection.query('SELECT * FROM products')
+  res.json({ product: product[product.length - 1] })
 })
 
 productRouter.put('/:id', (req, res) => {
   res.send('Hola bienvenido a la API para la gestion de productos!')
 })
 
-productRouter.delete('/:id', (req, res) => {
-  res.send('Hola bienvenido a la API para la gestion de productos!')
+productRouter.delete('/:id', async (req, res) => {
+  const { id } = req.params
+  const [product] = await connection.query(
+    'SELECT * FROM products WHERE id = ?',
+    [id]
+  )
+
+  if (product.length === 0) {
+    return res.status(404).json({ error: 'Producto no encontrado' })
+  }
+
+  try {
+    await connection.query('DELETE FROM products WHERE id = ?', [id])
+  } catch (error) {
+    return res.status(400).json({ error: 'Error al eliminar producto' })
+  }
+
+  res.json({ message: 'Producto eliminado con exito' })
 })
 
 export default productRouter
