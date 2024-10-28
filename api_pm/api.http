@@ -2,7 +2,7 @@
 GET http://localhost:3000/products
 
 ### Obtencion de un producto en particular.
-GET http://localhost:3000/products/12
+GET http://localhost:3000/products/2
 
 ### Creacion de un producto.
 POST http://localhost:3000/products
@@ -15,7 +15,7 @@ Content-Type: application/json
 }
 
 ### Eliminacion de un producto.
-DELETE http://localhost:3000/products/13
+DELETE http://localhost:3000/products/15
 
 ### Modificacion de un producto.
 PUT http://localhost:3000/products/12
