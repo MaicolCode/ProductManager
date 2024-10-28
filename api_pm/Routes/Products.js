@@ -45,8 +45,25 @@ productRouter.post('/', async (req, res) => {
   res.json({ product: product[product.length - 1] })
 })
 
-productRouter.put('/:id', (req, res) => {
-  res.send('Hola bienvenido a la API para la gestion de productos!')
+productRouter.put('/:id', async (req, res) => {
+  const { id } = req.params
+  const data = req.body
+
+  try {
+    await connection.query('UPDATE products SET ? WHERE id = ?', [data, id])
+  } catch (error) {
+    return res.status(400).json({ error: 'Error al actualizar el producto' })
+  }
+
+  const [product] = await connection.query(
+    'SELECT * FROM products WHERE id = ?',
+    [id]
+  )
+  if (product.length === 0) {
+    return res.status(404).json({ error: 'Producto no encontrado' })
+  }
+
+  return res.json({ product })
 })
 
 productRouter.delete('/:id', async (req, res) => {

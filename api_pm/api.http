@@ -18,11 +18,9 @@ Content-Type: application/json
 DELETE http://localhost:3000/products/11
 
 ### Modificacion de un producto.
-PUT http://localhost:3000/products/2
+PUT http://localhost:3000/products/9
 Content-Type: application/json
 
 {
-  "name": "Pasta Terminca",
-  "price": 5,
-  "quantity": 10
+  "quantity":5
 }
