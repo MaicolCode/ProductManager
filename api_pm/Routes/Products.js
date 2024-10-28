@@ -21,10 +21,13 @@ productRouter.get('/', async (req, res) => {
   })
 })
 
-productRouter.get('/:id', (req, res) => {
+productRouter.get('/:id', async (req, res) => {
   const { id } = req.params
-  console.log(id)
-  res.json({ product_id: id })
+  const [product] = await connection.query(
+    'SELECT * FROM products WHERE id = ?',
+    [id]
+  )
+  res.json({ product_id: product })
 })
 
 productRouter.post('/', (req, res) => {
