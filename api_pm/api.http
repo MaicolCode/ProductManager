@@ -1,0 +1,6 @@
+### Obtencion de toda la lista de productos de la BD.
+GET http://localhost:3000/products
+
+### Obtencion de un producto en particular.
+GET http://localhost:3000/products/2
+
