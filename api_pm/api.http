@@ -24,3 +24,31 @@ Content-Type: application/json
 {
   "quantity":6
 }
+
+
+
+### Obtencion de toda la lista de ventas de la BD.
+GET http://localhost:3000/sales
+
+### Obtencion de una venta en particular.
+GET http://localhost:3000/sales/2
+
+### Creacion de una venta.
+POST http://localhost:3000/sales/add
+Content-Type: application/json
+
+{
+  "productID": 12,
+  "quantity": 3
+}
+
+### Eliminacion de una venta.
+DELETE http://localhost:3000/sales/8
+
+### Modificacion de una venta.
+PUT http://localhost:3000/sales/8
+Content-Type: application/json
+
+{
+  "quantity_sold":2
+}
