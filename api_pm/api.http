@@ -31,22 +31,22 @@ Content-Type: application/json
 GET http://localhost:3000/sales
 
 ### Obtencion de una venta en particular.
-GET http://localhost:3000/sales/2
+GET http://localhost:3000/sales/4
 
 ### Creacion de una venta.
 POST http://localhost:3000/sales/add
 Content-Type: application/json
 
 {
-  "productID": 12,
-  "quantity": 3
+  "productID": 9,
+  "quantity": 2
 }
 
 ### Eliminacion de una venta.
-DELETE http://localhost:3000/sales/8
+DELETE http://localhost:3000/sales/11
 
 ### Modificacion de una venta.
-PUT http://localhost:3000/sales/8
+PUT http://localhost:3000/sales/10
 Content-Type: application/json
 
 {
