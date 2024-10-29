@@ -1,15 +1,4 @@
-import mysql from 'mysql2/promise'
-
-// DB Config
-const config = {
-  host: 'localhost',
-  user: 'root',
-  password: 'MaicolCodea',
-  database: 'tech_db',
-  port: 3306
-}
-
-const connection = await mysql.createConnection(config)
+import { connection } from '../utils/connection.js'
 
 export default class Product {
   static async getAll () {
