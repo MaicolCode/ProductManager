@@ -43,12 +43,12 @@ Content-Type: application/json
 }
 
 ### Eliminacion de una venta.
-DELETE http://localhost:3000/sales/11
+DELETE http://localhost:3000/sales/12
 
 ### Modificacion de una venta.
-PUT http://localhost:3000/sales/10
+PUT http://localhost:3000/sales/12
 Content-Type: application/json
 
 {
-  "quantity_sold":2
+  "quantity_sold":3
 }
