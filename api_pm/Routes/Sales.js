@@ -1,9 +1,11 @@
 import express from 'express'
+import { connection } from '../utils/connection.js'
 
 const salesRouter = express.Router()
 
-salesRouter.get('/', (req, res) => {
-  res.json({ message: 'Hola bienvenido a la API para la gestion de ventas!' })
+salesRouter.get('/', async (req, res) => {
+  const [sales] = await connection.query('SELECT * FROM sales')
+  res.json({ sales })
 })
 
 salesRouter.get('/:id', (req, res) => {
@@ -12,7 +14,7 @@ salesRouter.get('/:id', (req, res) => {
   res.json({ sales_id: id })
 })
 
-salesRouter.post('/sales', (req, res) => {
+salesRouter.post('/add', (req, res) => {
   res.send('Hola bienvenido a la API para la gestion de ventas!')
 })
 
