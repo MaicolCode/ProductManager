@@ -1,12 +1,12 @@
 import { connection } from '../utils/connection.js'
 
 export default class SalesController {
-  static async getAll(req, res) {
+  static async getAll (req, res) {
     const [sales] = await connection.query('SELECT * FROM sales')
     res.json({ sales })
   }
 
-  static async getById(req, res) {
+  static async getById (req, res) {
     const { id } = req.params
     const [sale] = await connection.query('SELECT * FROM sales WHERE id = ?', [
       id
@@ -15,7 +15,7 @@ export default class SalesController {
     res.json({ sale })
   }
 
-  static async create(req, res) {
+  static async create (req, res) {
     const { productID, quantity } = req.body
 
     try {
@@ -32,7 +32,7 @@ export default class SalesController {
     res.json({ sale: sales[sales.length - 1] })
   }
 
-  static async update(req, res) {
+  static async update (req, res) {
     const { id } = req.params
     const data = req.body
 
@@ -53,7 +53,7 @@ export default class SalesController {
     res.json({ message: 'Venta actualizada con exito' })
   }
 
-  static async delete(req, res) {
+  static async delete (req, res) {
     const { id } = req.params
 
     const [sale] = await connection.query('SELECT * FROM sales WHERE id = ?', [
