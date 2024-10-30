@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useEffect } from 'react'
-import Table from './components/Table'
+import ProductsTable from './components/ProductsTable.jsx'
 
 export default function Products() {
   const [products, setProducts] = useState(null)
@@ -13,5 +13,7 @@ export default function Products() {
 
   console.log(products)
 
-  return <div>{products ? <Table data={products} /> : 'loading...'}</div>
+  return (
+    <div>{products ? <ProductsTable data={products} /> : 'loading...'}</div>
+  )
 }
