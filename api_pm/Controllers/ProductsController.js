@@ -1,27 +1,27 @@
 import Product from '../Models/Product.js'
 
 export default class ProductController {
-  static async getAll (req, res) {
-    const result = await Product.getAll()
+  static async getAll(req, res) {
+    const products = await Product.getAll()
     return res.json({
-      result
+      products
     })
   }
 
-  static async getById (req, res) {
+  static async getById(req, res) {
     const { id } = req.params
     const product = await Product.getById(id)
     return res.json({ product })
   }
 
-  static async create (req, res) {
+  static async create(req, res) {
     const { name, price, quantity } = req.body
 
     const result = await Product.create(name, price, quantity)
     return res.json({ result })
   }
 
-  static async update (req, res) {
+  static async update(req, res) {
     const { id } = req.params
     const data = req.body
 
@@ -30,7 +30,7 @@ export default class ProductController {
     return res.json({ result })
   }
 
-  static async delete (req, res) {
+  static async delete(req, res) {
     const { id } = req.params
     const result = await Product.delete(id)
 
