@@ -1,4 +1,5 @@
 import Products from './Products'
+import Sales from './Sales'
 
 function App() {
   return (
@@ -7,6 +8,7 @@ function App() {
         <h1>Vista principal de la aplicación</h1>
         <h2>Productos</h2>
         <Products />
+        <Sales />
       </div>
     </>
   )
