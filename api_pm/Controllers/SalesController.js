@@ -2,9 +2,9 @@ import Sale from '../Models/Sale.js'
 
 export default class SalesController {
   static async getAll (req, res) {
-    const result = await Sale.getAll()
+    const sales = await Sale.getAll()
     return res.json({
-      result
+      sales
     })
   }
 
