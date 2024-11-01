@@ -1,25 +1,6 @@
 import { useEffect, useState } from 'react'
 import Button from './Button'
-
-function GetData(id) {
-  const [data, setData] = useState(null)
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch(`http://localhost:3000/products/${id}`)
-        const result = await res.json()
-        setData(result.product)
-      } catch (error) {
-        console.error('Error fetching data:', error)
-      }
-    }
-
-    fetchData()
-  }, [id])
-
-  return data
-}
+import GetData from '../hooks/GetData'
 
 export default function SalesTable({ data }) {
   console.log(data)
