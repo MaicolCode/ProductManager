@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react'
+
 export default function GetData(id) {
   const [data, setData] = useState(null)
 
