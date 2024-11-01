@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import Button from './Button'
 
 function GetData(id) {
   const [data, setData] = useState(null)
@@ -22,6 +23,12 @@ function GetData(id) {
 
 export default function SalesTable({ data }) {
   console.log(data)
+  function handleDelete() {
+    console.log('hola')
+  }
+  function handleEdit() {
+    console.log('hola')
+  }
 
   return (
     <table className='table-auto border-collapse border border-black'>
@@ -33,6 +40,7 @@ export default function SalesTable({ data }) {
           <th>Cantidad</th>
           <th>Total</th>
           <th>Fecha</th>
+          <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -48,6 +56,10 @@ export default function SalesTable({ data }) {
               )}
             </td>
             <td>{item.date_sale}</td>
+            <td className='flex justify-end items-center gap-2 px-3 py-2'>
+              <Button title={'Eliminar'} color={'red'} action={handleDelete} />
+              <Button title={'Editar'} color={'green'} action={handleEdit} />
+            </td>
           </tr>
         ))}
       </tbody>
