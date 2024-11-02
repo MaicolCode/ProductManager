@@ -38,8 +38,8 @@ POST http://localhost:3000/sales/add
 Content-Type: application/json
 
 {
-  "productID": 9,
-  "quantity": 2
+  "productID": 12,
+  "quantity": 1
 }
 
 ### Eliminacion de una venta.
