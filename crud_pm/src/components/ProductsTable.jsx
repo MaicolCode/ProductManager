@@ -1,10 +1,12 @@
 import Button from './Button'
 
-export default function ProductsTable({ data }) {
-  console.log(data)
+export default function ProductsTable({ products, actionEvent }) {
+  console.log(products)
+
   function handleDelete() {
     console.log('hola')
   }
+
   function handleEdit() {
     console.log('hola')
   }
@@ -22,7 +24,7 @@ export default function ProductsTable({ data }) {
         </tr>
       </thead>
       <tbody>
-        {data.map((item) => (
+        {products.map((item) => (
           <tr key={item.id}>
             <td>{item.id}</td>
             <td>{item.name}</td>
@@ -30,7 +32,12 @@ export default function ProductsTable({ data }) {
             <td>{item.quantity}</td>
             <td>{item.date}</td>
             <td className='flex justify-end items-center gap-2 px-3 py-2'>
-              <Button title={'Eliminar'} color={'red'} action={handleDelete} />
+              <Button
+                title={'Eliminar'}
+                color={'red'}
+                onDelete={actionEvent}
+                identifier={item.id}
+              />
               <Button title={'Editar'} color={'green'} action={handleEdit} />
             </td>
           </tr>
