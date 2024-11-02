@@ -1,19 +1,16 @@
-import { useState } from 'react'
-import { useEffect } from 'react'
 import ProductsTable from './components/ProductsTable.jsx'
+import useProduct from './hooks/useProduct.jsx'
 
 export default function Products() {
-  const [products, setProducts] = useState(null)
-
-  useEffect(() => {
-    fetch('http://localhost:3000/products')
-      .then((res) => res.json())
-      .then((data) => setProducts(data.products))
-  }, [])
-
-  console.log(products)
+  const { products, deleteProduct } = useProduct()
 
   return (
-    <div>{products ? <ProductsTable data={products} /> : 'loading...'}</div>
+    <div>
+      {products ? (
+        <ProductsTable products={products} actionEvent={deleteProduct} />
+      ) : (
+        'loading...'
+      )}
+    </div>
   )
 }

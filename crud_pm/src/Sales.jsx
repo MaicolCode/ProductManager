@@ -1,14 +1,16 @@
-import { useEffect, useState } from 'react'
+import useSale from './hooks/useSale'
 import SalesTable from './components/SalesTable'
 
 export default function Sales() {
-  const [sales, setSales] = useState(null)
+  const { sales, deleteSale } = useSale()
 
-  useEffect(() => {
-    fetch('http://localhost:3000/sales')
-      .then((res) => res.json())
-      .then((data) => setSales(data.sales))
-  }, [])
-
-  return <div>{sales ? <SalesTable data={sales} /> : 'loading...'}</div>
+  return (
+    <div>
+      {sales ? (
+        <SalesTable sales={sales} actionEvent={deleteSale} />
+      ) : (
+        'loading...'
+      )}
+    </div>
+  )
 }
