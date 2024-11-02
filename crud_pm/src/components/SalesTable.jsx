@@ -1,5 +1,6 @@
 import useProduct from '../hooks/useProduct'
 import Button from './Button'
+import ModalSale from './modals/ModalSale'
 
 export default function SalesTable({ sales, actionEvent }) {
   const { products: product } = useProduct()
@@ -9,6 +10,7 @@ export default function SalesTable({ sales, actionEvent }) {
 
   return (
     <div>
+      <ModalSale />
       <table className='table-auto border-collapse border border-black'>
         <thead>
           <tr>
