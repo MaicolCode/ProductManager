@@ -3,7 +3,7 @@ import SalesTable from './components/SalesTable'
 import useProduct from './hooks/useProduct'
 
 export default function Sales() {
-  const { sales, deleteSale, addSale } = useSale()
+  const { sales, deleteSale, addSale, updateSale } = useSale()
   const { products } = useProduct()
 
   return (
@@ -12,7 +12,7 @@ export default function Sales() {
         <SalesTable
           products={products}
           sales={sales}
-          actionEvents={{ deleteSale, addSale }}
+          actionEvents={{ deleteSale, addSale, updateSale }}
         />
       ) : (
         'loading...'
