@@ -1,5 +1,6 @@
 import ButtonDelete from './ButtonDelete'
 import ModalSale from './modals/ModalSale'
+import ModalUpdateSale from './modals/ModalUpdateSale'
 
 export default function SalesTable({ products, sales, actionEvents }) {
   const handleEdit = () => {
@@ -42,6 +43,14 @@ export default function SalesTable({ products, sales, actionEvents }) {
                   color={'red'}
                   onDelete={actionEvents.deleteSale}
                   identifier={item.id}
+                />
+                <ModalUpdateSale
+                  sale={{
+                    ...item,
+                    product: products?.find((p) => p.id === item.product_id)
+                      .name
+                  }}
+                  updateSale={actionEvents.updateSale}
                 />
               </td>
             </tr>
