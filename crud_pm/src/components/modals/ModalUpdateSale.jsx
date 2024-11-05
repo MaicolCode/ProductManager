@@ -53,7 +53,7 @@ export default function ModalUpdateSale({ sale, updateSale }) {
               <input
                 type='text'
                 name='product'
-                defaultValue={sale.product_name}
+                defaultValue={sale.product}
                 readOnly
                 className='border border-slate-400 border-opacity-40 rounded-lg p-2'
               />
