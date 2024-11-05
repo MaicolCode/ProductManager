@@ -43,7 +43,6 @@ export default function SalesTable({ products, sales, actionEvents }) {
                   onDelete={actionEvents.deleteSale}
                   identifier={item.id}
                 />
-                <Button title={'Editar'} color={'green'} action={handleEdit} />
               </td>
             </tr>
           ))}

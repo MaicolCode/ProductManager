@@ -36,7 +36,6 @@ export default function ProductsTable({ products, actionEvents }) {
                   onDelete={actionEvents.deleteProduct}
                   identifier={item.id}
                 />
-                <Button title={'Editar'} color={'green'} action={handleEdit} />
               </td>
             </tr>
           ))}
