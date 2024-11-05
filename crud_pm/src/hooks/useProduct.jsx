@@ -21,5 +21,18 @@ export default function useProduct() {
     setProducts(products.filter((product) => product.id !== id))
   }
 
-  return { products, deleteProduct }
+  const addProduct = async (product) => {
+    console.log(product)
+    await fetch(`http://localhost:3000/products/add`, {
+      method: 'POST',
+      body: JSON.stringify(product),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
+    setProducts([...products, product])
+  }
+
+  return { products, deleteProduct, addProduct }
 }
