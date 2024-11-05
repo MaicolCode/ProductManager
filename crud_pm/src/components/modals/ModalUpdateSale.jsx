@@ -15,8 +15,7 @@ export default function ModalUpdateSale({ sale, updateSale }) {
 
     const data = new FormData(e.target)
     const newSale = {
-      productID: data.get('productID'),
-      quantity: data.get('quantity')
+      quantity_sold: data.get('quantity')
     }
 
     updateSale(sale.id, newSale)
