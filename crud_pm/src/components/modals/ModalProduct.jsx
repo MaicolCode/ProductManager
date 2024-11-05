@@ -2,9 +2,8 @@ import { useState } from 'react'
 import CloseIcon from '../../icons/close'
 import useProduct from '../../hooks/useProduct'
 
-export default function ModalProduct() {
+export default function ModalProduct({ addProduct }) {
   const [isOpen, setIsOpen] = useState(false)
-  const { addProduct } = useProduct()
 
   const handleOpen = () => setIsOpen(true)
   const handleClose = () => setIsOpen(false)
@@ -46,8 +45,8 @@ export default function ModalProduct() {
               Ingreso de Productos al sistema.
             </h1>
             <form
-              className='w-full flex flex-col gap-4 text-sm'
               onSubmit={handleSubmit}
+              className='w-full flex flex-col gap-4 text-sm'
             >
               <label className='text-gray-700'>Producto a ingresar:</label>
               <input
