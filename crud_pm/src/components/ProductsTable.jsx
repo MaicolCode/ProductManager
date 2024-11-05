@@ -1,7 +1,7 @@
 import Button from './Button'
 import ModalProduct from './modals/ModalProduct'
 
-export default function ProductsTable({ products, actionEvent }) {
+export default function ProductsTable({ products, actionEvents }) {
   console.log(products)
 
   function handleEdit() {
@@ -10,7 +10,7 @@ export default function ProductsTable({ products, actionEvent }) {
 
   return (
     <div>
-      <ModalProduct />
+      <ModalProduct addProduct={actionEvents.addProduct} />
       <table className='table-auto border-collapse border border-black'>
         <thead>
           <tr>
@@ -33,7 +33,7 @@ export default function ProductsTable({ products, actionEvent }) {
                 <Button
                   title={'Eliminar'}
                   color={'red'}
-                  onDelete={actionEvent}
+                  onDelete={actionEvents.deleteProduct}
                   identifier={item.id}
                 />
                 <Button title={'Editar'} color={'green'} action={handleEdit} />

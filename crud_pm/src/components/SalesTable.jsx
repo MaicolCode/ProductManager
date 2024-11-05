@@ -1,16 +1,14 @@
-import useProduct from '../hooks/useProduct'
 import Button from './Button'
 import ModalSale from './modals/ModalSale'
 
-export default function SalesTable({ sales, actionEvent }) {
-  const { products: product } = useProduct()
+export default function SalesTable({ products, sales, actionEvents }) {
   const handleEdit = () => {
     console.log('hola')
   }
 
   return (
     <div>
-      <ModalSale />
+      <ModalSale addSale={actionEvents.addSale} />
       <table className='table-auto border-collapse border border-black'>
         <thead>
           <tr>
@@ -28,13 +26,13 @@ export default function SalesTable({ sales, actionEvent }) {
             <tr key={item.id}>
               <td>{item.id}</td>
 
-              <td>{product?.find((p) => p.id === item.product_id).name}</td>
-              <td>{product?.find((p) => p.id === item.product_id).price}</td>
+              <td>{products?.find((p) => p.id === item.product_id).name}</td>
+              <td>{products?.find((p) => p.id === item.product_id).price}</td>
               <td>{item.quantity_sold}</td>
               <td>
                 {(
                   item.quantity_sold *
-                  product?.find((p) => p.id === item.product_id).price
+                  products?.find((p) => p.id === item.product_id).price
                 ).toFixed(2)}
               </td>
               <td>{item.date_sale}</td>
@@ -42,7 +40,7 @@ export default function SalesTable({ sales, actionEvent }) {
                 <Button
                   title={'Eliminar'}
                   color={'red'}
-                  onDelete={actionEvent}
+                  onDelete={actionEvents.deleteSale}
                   identifier={item.id}
                 />
                 <Button title={'Editar'} color={'green'} action={handleEdit} />
