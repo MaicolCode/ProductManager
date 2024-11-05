@@ -33,5 +33,17 @@ export default function useProduct() {
     fetchProducts()
   }
 
+  const updateProduct = async (id, product) => {
+    await fetch(`http://localhost:3000/products/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(product),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
+    fetchProducts()
+  }
+
   return { products, deleteProduct, addProduct }
 }
