@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import CloseIcon from '../../icons/close'
 
-export default function ModalProductUpdate() {
+export default function ModalProductUpdate({ product, updateProduct }) {
   const [isOpen, setIsOpen] = useState(false)
 
   const handleOpen = () => setIsOpen(true)
   const handleClose = () => setIsOpen(false)
 
-  /* const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
 
     const data = new FormData(e.target)
@@ -17,9 +17,9 @@ export default function ModalProductUpdate() {
       quantity: data.get('quantity')
     }
 
-    addProduct(newProduct)
+    updateProduct(product.id, newProduct)
     handleClose()
-  } */
+  }
 
   return (
     <>
@@ -44,19 +44,21 @@ export default function ModalProductUpdate() {
               Actualizar producto del sistema.
             </h1>
             <form
-              //onSubmit={handleSubmit}
+              onSubmit={handleSubmit}
               className='w-full flex flex-col gap-4 text-sm'
             >
               <label className='text-gray-700'>Nombre del producto:</label>
               <input
                 type='text'
                 name='name'
+                defaultValue={product.name}
                 className='w-full border border-slate-400 border-opacity-40 rounded-lg px-2 py-2'
               />
               <label className='text-gray-700'>Precio:</label>
               <input
                 type='text'
                 name='price'
+                defaultValue={product.price}
                 className='w-full border border-slate-400 border-opacity-40 rounded-lg px-2 py-2'
               />
               <label className='text-gray-700'>Cantidad comprada:</label>
@@ -65,6 +67,7 @@ export default function ModalProductUpdate() {
                 step={1}
                 min={0}
                 name='quantity'
+                defaultValue={product.quantity}
                 className='border border-slate-400 border-opacity-40 rounded-lg p-2'
               />
 
