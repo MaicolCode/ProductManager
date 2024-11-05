@@ -2,13 +2,26 @@ import { useState } from 'react'
 import useProduct from '../../hooks/useProduct'
 import CloseIcon from '../../icons/close'
 
-export default function ModalSale() {
+export default function ModalSale({ addSale }) {
   const [isOpen, setIsOpen] = useState(false)
 
   const { products } = useProduct()
 
   const handleOpen = () => setIsOpen(true)
   const handleClose = () => setIsOpen(false)
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    const data = new FormData(e.target)
+    const newSale = {
+      productID: data.get('productID'),
+      quantity: data.get('quantity')
+    }
+
+    addSale(newSale)
+    handleClose()
+  }
 
   return (
     <>
@@ -32,11 +45,17 @@ export default function ModalSale() {
             <h1 className='w-full font-semibold text-center mb-3 text-slate-600'>
               Ingreso de venta al sistema.
             </h1>
-            <form className='w-full flex flex-col gap-4 text-sm'>
+            <form
+              className='w-full flex flex-col gap-4 text-sm'
+              onSubmit={handleSubmit}
+            >
               <label className='text-gray-700'>Seleccionar producto:</label>
-              <select className='border border-slate-400 border-opacity-40 rounded-lg p-2'>
+              <select
+                name='productID'
+                className='border border-slate-400 border-opacity-40 rounded-lg p-2'
+              >
                 {products.map((item) => (
-                  <option key={item.id} value={item.name}>
+                  <option key={item.id} value={item.id}>
                     {item.name}
                   </option>
                 ))}
@@ -46,11 +65,14 @@ export default function ModalSale() {
                 type='number'
                 step={1}
                 min={0}
-                value={0}
+                name='quantity'
                 className='border border-slate-400 border-opacity-40 rounded-lg p-2'
               />
 
-              <button className='bg-blue-500 py-2 px-5 mt-5 rounded-lg text-white font-medium'>
+              <button
+                className='bg-blue-500 py-2 px-5 mt-5 rounded-lg text-white font-medium'
+                type='submit'
+              >
                 Guardar
               </button>
             </form>
