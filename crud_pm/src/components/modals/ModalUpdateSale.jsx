@@ -63,7 +63,7 @@ export default function ModalUpdateSale({ sale, updateSale }) {
                 step={1}
                 min={0}
                 name='quantity'
-                defaultValue={sale.quantity}
+                defaultValue={sale.quantity_sold}
                 className='border border-slate-400 border-opacity-40 rounded-lg p-2'
               />
 
