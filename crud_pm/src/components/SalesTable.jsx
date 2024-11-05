@@ -37,7 +37,7 @@ export default function SalesTable({ products, sales, actionEvents }) {
               </td>
               <td>{item.date_sale}</td>
               <td className='flex justify-end items-center gap-2 px-3 py-2'>
-                <Button
+                <ButtonDelete
                   title={'Eliminar'}
                   color={'red'}
                   onDelete={actionEvents.deleteSale}

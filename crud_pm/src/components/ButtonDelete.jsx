@@ -1,6 +1,4 @@
-import { useState } from 'react'
-
-export default function Button({ onDelete, identifier, title, color }) {
+export default function ButtonDelete({ onDelete, identifier, title, color }) {
   return (
     <button
       onClick={() => onDelete(identifier)}

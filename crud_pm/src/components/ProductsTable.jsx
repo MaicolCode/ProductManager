@@ -1,4 +1,4 @@
-import Button from './ButtonDelete'
+import ButtonDelete from './ButtonDelete'
 import ModalProduct from './modals/ModalProduct'
 
 export default function ProductsTable({ products, actionEvents }) {
@@ -30,7 +30,7 @@ export default function ProductsTable({ products, actionEvents }) {
               <td>{item.price}</td>
 
               <td className='flex justify-end items-center gap-2 px-3 py-2'>
-                <Button
+                <ButtonDelete
                   title={'Eliminar'}
                   color={'red'}
                   onDelete={actionEvents.deleteProduct}
