@@ -32,5 +32,17 @@ export default function useSale() {
     fetchSales()
   }
 
-  return { sales, deleteSale, addSale }
+  const updateSale = async (id, sale) => {
+    await fetch(`http://localhost:3000/sales/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(sale),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
+    fetchSales()
+  }
+
+  return { sales, deleteSale, addSale, updateSale }
 }
