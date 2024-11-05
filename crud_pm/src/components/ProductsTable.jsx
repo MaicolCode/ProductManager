@@ -1,5 +1,6 @@
 import ButtonDelete from './ButtonDelete'
 import ModalProduct from './modals/ModalProduct'
+import ModalProductUpdate from './modals/ModalUpdateProduct'
 
 export default function ProductsTable({ products, actionEvents }) {
   console.log(products)
@@ -35,6 +36,10 @@ export default function ProductsTable({ products, actionEvents }) {
                   color={'red'}
                   onDelete={actionEvents.deleteProduct}
                   identifier={item.id}
+                />
+                <ModalProductUpdate
+                  product={item}
+                  updateProduct={actionEvents.updateProduct}
                 />
               </td>
             </tr>
