@@ -1,4 +1,4 @@
-import Button from './Button'
+import Button from './ButtonDelete'
 import ModalSale from './modals/ModalSale'
 
 export default function SalesTable({ products, sales, actionEvents }) {
