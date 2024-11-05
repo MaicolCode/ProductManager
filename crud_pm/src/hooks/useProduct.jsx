@@ -45,5 +45,5 @@ export default function useProduct() {
     fetchProducts()
   }
 
-  return { products, deleteProduct, addProduct }
+  return { products, deleteProduct, addProduct, updateProduct }
 }
