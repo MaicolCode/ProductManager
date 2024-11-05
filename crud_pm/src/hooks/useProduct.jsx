@@ -22,7 +22,6 @@ export default function useProduct() {
   }
 
   const addProduct = async (product) => {
-    console.log(product)
     await fetch(`http://localhost:3000/products/add`, {
       method: 'POST',
       body: JSON.stringify(product),
@@ -31,7 +30,7 @@ export default function useProduct() {
       }
     })
 
-    setProducts([...products, product])
+    fetchProducts()
   }
 
   return { products, deleteProduct, addProduct }

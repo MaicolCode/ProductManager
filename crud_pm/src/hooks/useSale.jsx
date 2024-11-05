@@ -21,5 +21,16 @@ export default function useSale() {
     setSales(sales.filter((sale) => sale.id !== id))
   }
 
-  return { sales, deleteSale }
+  const addSale = async (sale) => {
+    await fetch(`http://localhost:3000/sales/add`, {
+      method: 'POST',
+      body: JSON.stringify(sale),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    fetchSales()
+  }
+
+  return { sales, deleteSale, addSale }
 }
