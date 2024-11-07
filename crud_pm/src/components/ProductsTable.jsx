@@ -10,9 +10,12 @@ export default function ProductsTable({ products, actionEvents }) {
   }
 
   return (
-    <div>
+    <div className='text-sm'>
       <ModalProduct addProduct={actionEvents.addProduct} />
-      <table className='table-auto border-collapse border border-black'>
+      <table
+        className='md:w-[1000px] sm:w-[695px] border-collapse border border-black'
+        cellPadding={10}
+      >
         <thead>
           <tr>
             <th>ID</th>
@@ -22,9 +25,9 @@ export default function ProductsTable({ products, actionEvents }) {
             <th>Acciones</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className='text-center '>
           {products.map((item) => (
-            <tr key={item.id}>
+            <tr key={item.id} className='odd:bg-slate-100'>
               <td>{item.id}</td>
               <td>{item.name}</td>
               <td>{item.quantity}</td>

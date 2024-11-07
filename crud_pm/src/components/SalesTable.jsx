@@ -8,9 +8,12 @@ export default function SalesTable({ products, sales, actionEvents }) {
   }
 
   return (
-    <div>
+    <div className='text-sm'>
       <ModalSale addSale={actionEvents.addSale} />
-      <table className='table-auto border-collapse border border-black'>
+      <table
+        className=' md:w-[1000px] sm:w-[500px] table-auto border-collapse border border-black'
+        cellPadding={10}
+      >
         <thead>
           <tr>
             <th>ID</th>
@@ -24,7 +27,7 @@ export default function SalesTable({ products, sales, actionEvents }) {
         </thead>
         <tbody>
           {sales.map((item) => (
-            <tr key={item.id}>
+            <tr key={item.id} className='odd:bg-slate-100'>
               <td>{item.id}</td>
 
               <td>{products?.find((p) => p.id === item.product_id).name}</td>
