@@ -1,6 +1,6 @@
-import useSale from './hooks/useSale'
-import SalesTable from './components/SalesTable'
-import useProduct from './hooks/useProduct'
+import useSale from '../hooks/useSale'
+import SalesTable from '../components/SalesTable'
+import useProduct from '../hooks/useProduct'
 
 export default function Sales() {
   const { sales, deleteSale, addSale, updateSale } = useSale()
