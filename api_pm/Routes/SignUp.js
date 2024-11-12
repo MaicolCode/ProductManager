@@ -1,13 +1,15 @@
 import { Router } from 'express'
 
-export const signUpRouter = Router()
+const signUpRouter = Router()
 
 signUpRouter.post('/', (req, res) => {
-  const { username, email, password } = req.body
+  const { name, username, password } = req.body
 
-  if (!username || !email || !password) {
+  if (!name || !username || !password) {
     return res.status(400).json({ message: 'Missing parameters' })
   }
 
   return res.status(200).json({ message: 'Sign up successful' })
 })
+
+export default signUpRouter
