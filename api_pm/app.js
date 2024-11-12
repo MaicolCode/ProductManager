@@ -5,19 +5,21 @@ import salesRouter from './Routes/Sales.js'
 import loginRouter from './Routes/Login.js'
 import refreshTokenRouter from './Routes/RefreshToken.js'
 import usersRouter from './Routes/Users.js'
+import signUpRouter from './Routes/SignUp.js'
 
 const app = express()
 const port = process.env.PORT || 3000
 
 app.use(express.json())
-app.use(cors())
 app.use(express.urlencoded({ extended: false }))
+app.use(cors())
 
 app.use('/products', productRouter)
 app.use('/sales', salesRouter)
 app.use('/login', loginRouter)
 app.use('/refreshToken', refreshTokenRouter)
 app.use('/users', usersRouter)
+app.use('/signup', signUpRouter)
 
 app.listen(port, () => {
   console.log(`Server listener in port http://localhost:${port}`)
