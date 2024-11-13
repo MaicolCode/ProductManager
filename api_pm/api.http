@@ -9,8 +9,8 @@ POST http://localhost:3000/products/add
 Content-Type: application/json
 
 {
-  "name": "Clousure",
-  "price": 35.20,
+  "name": "Kit de Limpieza",
+  "price": 2,
   "quantity": 4
 }
 
@@ -38,8 +38,8 @@ POST http://localhost:3000/sales/add
 Content-Type: application/json
 
 {
-  "productID": 12,
-  "quantity": 1
+  "productID": 2,
+  "quantity": 2
 }
 
 ### Eliminacion de una venta.
