@@ -18,7 +18,7 @@ const router = createBrowserRouter(
     <>
       <Route path='/' element={<Login />} errorElement={<ErrorPage />}></Route>
       <Route
-        path='/SignUp'
+        path='/signup'
         element={<SignUp />}
         errorElement={<ErrorPage />}
       ></Route>
