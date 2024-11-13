@@ -6,6 +6,9 @@ import loginRouter from './Routes/Login.js'
 import refreshTokenRouter from './Routes/RefreshToken.js'
 import usersRouter from './Routes/Users.js'
 import signUpRouter from './Routes/SignUp.js'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const app = express()
 const port = process.env.PORT || 3000
