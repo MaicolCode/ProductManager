@@ -1,6 +1,7 @@
 import useSale from '../hooks/useSale'
 import SalesTable from '../components/SalesTable'
 import useProduct from '../hooks/useProduct'
+import Loader from '../components/loader/Loader'
 
 export default function Sales() {
   const { sales, deleteSale, addSale, updateSale } = useSale()
@@ -15,7 +16,7 @@ export default function Sales() {
           actionEvents={{ deleteSale, addSale, updateSale }}
         />
       ) : (
-        'loading...'
+        <Loader />
       )}
     </div>
   )
