@@ -18,7 +18,7 @@ signUpRouter.post('/', async (req, res) => {
     [username]
   )
 
-  if (existsUser[0].length < 0) {
+  if (existsUser[0].length > 0) {
     return res.status(400).json({ message: 'Username already exists' })
   }
 
