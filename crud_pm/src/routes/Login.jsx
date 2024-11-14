@@ -1,13 +1,15 @@
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { API_URL } from '../auth/constants'
 import ErrorMessage from '../components/messages/ErrorMessage'
+import { useAuthUser } from '../auth/AuthProvider'
 
 export default function Login() {
   const [errorMessage, setErrorMessage] = useState(null)
   const navigate = useNavigate()
+  const { saveUser, isAuthenticated } = useAuthUser()
 
-  const handleSubmit = async (e) => {
+  async function handleSubmit(e) {
     e.preventDefault()
 
     try {
@@ -25,7 +27,11 @@ export default function Login() {
       if (response.ok) {
         console.log('Usuario logeado correctamente')
         setErrorMessage(null)
-        navigate('/')
+        const userData = await response.json()
+        if (userData.accessToken && userData.refreshToken) {
+          saveUser(userData)
+          navigate('/dashboard')
+        }
       } else {
         const error = await response.json()
         setErrorMessage(error.message)
@@ -35,6 +41,11 @@ export default function Login() {
       console.error(error)
     }
   }
+
+  if (isAuthenticated) {
+    return <Navigate to='/dashboard' />
+  }
+
   return (
     <div className='rounded-lg w-screen h-full box-border flex justify-center'>
       <div className='w-[100vh] h-[100vh] flex items-center justify-center'>
