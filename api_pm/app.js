@@ -7,6 +7,8 @@ import refreshTokenRouter from './Routes/RefreshToken.js'
 import usersRouter from './Routes/Users.js'
 import signUpRouter from './Routes/SignUp.js'
 import dotenv from 'dotenv'
+import { authenticate } from './auth/authenticate.js'
+import signOutRouter from './Routes/SignOut.js'
 
 dotenv.config()
 
@@ -20,9 +22,10 @@ app.use(cors())
 app.use('/products', productRouter)
 app.use('/sales', salesRouter)
 app.use('/login', loginRouter)
-app.use('/refreshToken', refreshTokenRouter)
-app.use('/users', usersRouter)
+app.use('/refresh-token', refreshTokenRouter)
+app.use('/user', authenticate, usersRouter)
 app.use('/signup', signUpRouter)
+app.use('/signout', signOutRouter)
 
 app.listen(port, () => {
   console.log(`Server listener in port http://localhost:${port}`)
