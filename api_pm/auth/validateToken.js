@@ -5,7 +5,12 @@ function verifyAccessToken(token) {
 }
 
 function verifyRefreshToken(token) {
-  return jwt.verify(token, process.env.REFRESH_TOKEN_SECRET)
+  return jwt.verify(token, process.env.REFRESH_TOKEN_SECRET, (err) => {
+    if (err) {
+      return false
+    }
+    return true
+  })
 }
 
 export { verifyAccessToken, verifyRefreshToken }
