@@ -1,5 +1,5 @@
-import { getTokenFromHeader } from './getTokenFromHeader'
-import { verifyAccessToken } from './validateToken'
+import { getTokenFromHeader } from './getTokenFromHeader.js'
+import { verifyAccessToken } from './validateToken.js'
 
 export function authenticate(req, res, next) {
   const token = getTokenFromHeader(req.headers)
