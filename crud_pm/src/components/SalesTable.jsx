@@ -21,7 +21,7 @@ export default function SalesTable({ products, sales, actionEvents }) {
             <SearchIcon />
           </button>
         </section>
-        <ModalSale addProduct={actionEvents.addSale} />
+        <ModalSale addSale={actionEvents.addSale} />
       </div>
       <div className='shadow-[0_3px_7px_1px_rgba(0,0,0,0.1)] rounded-lg pb-4 flex gap-5'>
         <table className=' w-[100%] table-auto' cellPadding={10}>
