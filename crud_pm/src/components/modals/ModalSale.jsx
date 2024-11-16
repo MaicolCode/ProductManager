@@ -26,10 +26,10 @@ export default function ModalSale({ addSale }) {
   return (
     <>
       <button
-        className='bg-slate-500 py-2 px-5 rounded-sm text-white font-medium my-5'
+        className='bg-gray-200 py-3 px-5 rounded-md text-slate-700 font-medium'
         onClick={handleOpen}
       >
-        Modal
+        Agregar Nuevo
       </button>
       {isOpen && (
         <div className='fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center'>
