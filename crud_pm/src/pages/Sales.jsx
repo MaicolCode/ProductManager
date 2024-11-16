@@ -8,7 +8,11 @@ export default function Sales() {
   const { products } = useProduct()
 
   return (
-    <div>
+    <div className='w-full p-4'>
+      <h2 className='text-2xl font-semibold text-slate-700 my-6'>
+        Listado de ventas
+      </h2>
+      <hr className='border-slate-200 w-full mb-2' />
       {sales ? (
         <SalesTable
           products={products}
