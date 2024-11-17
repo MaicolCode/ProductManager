@@ -6,21 +6,37 @@ import ModalSale from './modals/ModalSale'
 import ModalUpdateSale from './modals/ModalUpdateSale'
 
 export default function SalesTable({ sales }) {
-  const { deleteSale } = useSale()
+  const { deleteSale, filterSales } = useSale()
   const { products } = useProduct()
+
+  const handleSearch = (e) => {
+    filterSales(e.target.value)
+  }
 
   return (
     <div className='text-sm'>
       <div className='flex justify-between gap-5 my-4'>
-        <section className='relative h-full'>
-          <input
-            type='search'
-            placeholder='Filtrar ventas'
-            className='block w-[220px] rounded-md border border-gray-200 focus:outline-none focus:ring-1 focus:ring-gray-300 focus:border-gray-300 p-2 text-sm'
-          />
-          <div className='absolute top-0 end-0 p-2.5 bg-gray-300 rounded-md text-slate-700 font-medium w-10 h-full flex justify-center items-center'>
+        <section className='relative h-full '>
+          <select
+            name='sale'
+            id='sale'
+            onClick={handleSearch}
+            className='block w-[220px] rounded-md z-10 border border-gray-200 focus:outline-none focus:ring-1 focus:ring-gray-300 focus:border-gray-300 p-2 text-sm'
+          >
+            <option value='All'>Todas las ventas</option>
+            {products.map((item) => (
+              <option key={item.id} value={item.id}>
+                {item.name}
+              </option>
+            ))}
+          </select>
+
+          <label
+            htmlFor='sale'
+            className='absolute top-0 end-0 z-0 p-2.5 bg-gray-300 rounded-md text-slate-700 font-medium w-10 h-full flex justify-center items-center'
+          >
             <FilterIcon />
-          </div>
+          </label>
         </section>
         <ModalSale />
       </div>
