@@ -117,7 +117,7 @@ export default function AuthProvider({ children }) {
   }
 
   function saveUser(userData) {
-    saveUserSession(userData.accessToken, userData.user, userData.refreshToken)
+    saveUserSession(userData.accessToken, userData, userData.refreshToken)
   }
 
   function signOut() {
