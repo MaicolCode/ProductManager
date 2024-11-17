@@ -1,14 +1,11 @@
+import { useProduct } from '../hooks/useProduct'
 import SearchIcon from '../icons/Search'
 import ButtonDelete from './ButtonDelete'
 import ModalProduct from './modals/ModalProduct'
 import ModalProductUpdate from './modals/ModalUpdateProduct'
 
-export default function ProductsTable({ products, actionEvents }) {
-  console.log(products)
-
-  function handleEdit() {
-    console.log('hola')
-  }
+export default function ProductsTable({ products }) {
+  const { deleteProduct } = useProduct()
 
   return (
     <div className='text-sm'>
@@ -23,7 +20,7 @@ export default function ProductsTable({ products, actionEvents }) {
             <SearchIcon />
           </button>
         </section>
-        <ModalProduct addProduct={actionEvents.addProduct} />
+        <ModalProduct />
       </div>
       <div className='shadow-[0_3px_7px_1px_rgba(0,0,0,0.1)] rounded-lg pb-4 flex gap-5'>
         <table className='w-[100%]' cellPadding={10}>
@@ -48,13 +45,10 @@ export default function ProductsTable({ products, actionEvents }) {
                   <ButtonDelete
                     title={'Eliminar'}
                     color={'red'}
-                    onDelete={actionEvents.deleteProduct}
+                    onDelete={deleteProduct}
                     identifier={item.id}
                   />
-                  <ModalProductUpdate
-                    product={item}
-                    updateProduct={actionEvents.updateProduct}
-                  />
+                  <ModalProductUpdate product={item} />
                 </td>
               </tr>
             ))}
