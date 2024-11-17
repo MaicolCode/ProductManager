@@ -3,16 +3,11 @@ import { useAuthUser } from '../auth/AuthProvider'
 import { API_URL } from '../auth/constants'
 import Products from '../pages/Products'
 import Sales from '../pages/Sales'
-import {
-  Routes,
-  Route,
-  Link,
-  useNavigate,
-  Outlet,
-  NavLink
-} from 'react-router-dom'
+import { Routes, Route, Outlet, NavLink } from 'react-router-dom'
 import MenuIcon from '../icons/Menu'
 import CloseIcon from '../icons/close'
+import ProductProvider from '../contexts/product'
+import SalesProvider from '../contexts/sales'
 
 export default function Dashboard() {
   const { getRefreshToken, signOut } = useAuthUser()
@@ -48,10 +43,14 @@ export default function Dashboard() {
           </section>
         </section>
 
-        <Routes>
-          <Route path='/products' element={<Products />} />
-          <Route path='/sales' element={<Sales />} />
-        </Routes>
+        <SalesProvider>
+          <ProductProvider>
+            <Routes>
+              <Route path='/products' element={<Products />} />
+              <Route path='/sales' element={<Sales />} />
+            </Routes>
+          </ProductProvider>
+        </SalesProvider>
         <Outlet />
       </div>
     </div>
@@ -60,17 +59,18 @@ export default function Dashboard() {
 
 function Navigation({ action }) {
   const { getUser } = useAuthUser()
+  const user = getUser()
   return (
     <>
       <nav className='h-full w-[200px] hidden sm:flex flex-col justify-between  gap-5 py-3 px-2 bg-slate-100 rounded-tl-md rounded-bl-lg text-sm'>
         <section className='flex flex-col gap-2'>
-          <article className='relative w-[200px] h-[90px] flex flex-col justify-center items-center gap-2 my-2'>
+          <article className='relative w-[200px] h-[90px] flex flex-col justify-center items-center gap-2 my-6'>
             <img
               src='../public/images/logo.png'
               alt='logo'
               className='w-16 h-16 rounded-full'
             />
-            <span>{getUser().name}</span>
+            <span>{user.name}</span>
           </article>
 
           <NavLink
