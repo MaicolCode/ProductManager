@@ -10,7 +10,6 @@ export default function ProductProvider({ children }) {
     fetchProducts()
   }, [])
 
-  console.log(filter)
   const filterProducts = (searchTerm) => {
     const filteredProducts = products.filter((product) =>
       product.name.toLowerCase().includes(searchTerm.toLowerCase())
