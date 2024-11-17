@@ -5,11 +5,11 @@ function verifyAccessToken(token) {
 }
 
 function verifyRefreshToken(token) {
-  return jwt.verify(token, process.env.REFRESH_TOKEN_SECRET, (err) => {
+  return jwt.verify(token, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
     if (err) {
       return false
     }
-    return true
+    return user
   })
 }
 
