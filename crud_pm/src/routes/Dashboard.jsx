@@ -15,7 +15,6 @@ import MenuIcon from '../icons/Menu'
 import CloseIcon from '../icons/close'
 
 export default function Dashboard() {
-  const navigate = useNavigate()
   const { getRefreshToken, signOut } = useAuthUser()
 
   async function handleClick() {
@@ -60,16 +59,18 @@ export default function Dashboard() {
 }
 
 function Navigation({ action }) {
+  const { getUser } = useAuthUser()
   return (
     <>
       <nav className='h-full w-[200px] hidden sm:flex flex-col justify-between  gap-5 py-3 px-2 bg-slate-100 rounded-tl-md rounded-bl-lg text-sm'>
         <section className='flex flex-col gap-2'>
-          <article className='relative w-[200px] h-[90px] flex justify-center items-center'>
+          <article className='relative w-[200px] h-[90px] flex flex-col justify-center items-center gap-2 my-2'>
             <img
               src='../public/images/logo.png'
               alt='logo'
               className='w-16 h-16 rounded-full'
             />
+            <span>{getUser().name}</span>
           </article>
 
           <NavLink
