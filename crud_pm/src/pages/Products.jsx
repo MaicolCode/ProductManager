@@ -1,9 +1,9 @@
 import Loader from '../components/loader/Loader.jsx'
 import ProductsTable from '../components/ProductsTable.jsx'
-import useProduct from '../hooks/useProduct.jsx'
+import { useProduct } from '../hooks/useProduct.jsx'
 
 export default function Products() {
-  const { products, deleteProduct, addProduct, updateProduct } = useProduct()
+  const { products } = useProduct()
 
   return (
     <div className='w-full p-4'>
@@ -11,14 +11,7 @@ export default function Products() {
         Listado de productos
       </h2>
       <hr className='border-slate-200 w-full mb-2' />
-      {products ? (
-        <ProductsTable
-          products={products}
-          actionEvents={{ deleteProduct, addProduct, updateProduct }}
-        />
-      ) : (
-        <Loader />
-      )}
+      {products ? <ProductsTable products={products} /> : <Loader />}
     </div>
   )
 }
