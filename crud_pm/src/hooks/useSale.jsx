@@ -1,48 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useContext } from 'react'
+import { SalesContext } from '../contexts/sales'
 
 export default function useSale() {
-  const [sales, setSales] = useState(null)
-
-  useEffect(() => {
-    fetchSales()
-  }, [])
-
-  const fetchSales = async () => {
-    const res = await fetch(`http://localhost:3000/sales`)
-    const result = await res.json()
-    setSales(result.sales)
-  }
-
-  const deleteSale = async (id) => {
-    await fetch(`http://localhost:3000/sales/${id}`, {
-      method: 'DELETE'
-    })
-
-    setSales(sales.filter((sale) => sale.id !== id))
-  }
-
-  const addSale = async (sale) => {
-    await fetch(`http://localhost:3000/sales/add`, {
-      method: 'POST',
-      body: JSON.stringify(sale),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    fetchSales()
-  }
-
-  const updateSale = async (id, sale) => {
-    await fetch(`http://localhost:3000/sales/${id}`, {
-      method: 'PUT',
-      body: JSON.stringify(sale),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-
-    fetchSales()
-  }
+  const { sales, addSale, updateSale, deleteSale } = useContext(SalesContext)
 
   return { sales, deleteSale, addSale, updateSale }
 }
