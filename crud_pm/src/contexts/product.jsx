@@ -4,10 +4,19 @@ export const ProductContext = createContext()
 
 export default function ProductProvider({ children }) {
   const [products, setProducts] = useState([])
+  const [filter, setFilter] = useState([])
 
   useEffect(() => {
     fetchProducts()
   }, [])
+
+  console.log(filter)
+  const filterProducts = (searchTerm) => {
+    const filteredProducts = products.filter((product) =>
+      product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+    setFilter(filteredProducts)
+  }
 
   const addProduct = async (product) => {
     await fetch(`http://localhost:3000/products/add`, {
@@ -45,16 +54,18 @@ export default function ProductProvider({ children }) {
     const res = await fetch(`http://localhost:3000/products`)
     const result = await res.json()
     setProducts(result.products)
+    setFilter(result.products)
   }
 
   return (
     <ProductContext.Provider
       value={{
-        products,
+        products: filter,
         addProduct,
         updateProduct,
         deleteProduct,
-        fetchProducts
+        fetchProducts,
+        filterProducts
       }}
     >
       {children}
