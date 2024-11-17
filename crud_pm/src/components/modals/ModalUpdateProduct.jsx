@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import CloseIcon from '../../icons/close'
+import { useProduct } from '../../hooks/useProduct'
 
-export default function ModalProductUpdate({ product, updateProduct }) {
+export default function ModalProductUpdate({ product }) {
+  const { updateProduct } = useProduct()
   const [isOpen, setIsOpen] = useState(false)
 
   const handleOpen = () => setIsOpen(true)
