@@ -1,6 +1,6 @@
 import { useProduct } from '../hooks/useProduct'
 import useSale from '../hooks/useSale'
-import SearchIcon from '../icons/Search'
+import FilterIcon from '../icons/Filter'
 import ButtonDelete from './ButtonDelete'
 import ModalSale from './modals/ModalSale'
 import ModalUpdateSale from './modals/ModalUpdateSale'
@@ -21,9 +21,9 @@ export default function SalesTable({ sales }) {
             placeholder='Buscar producto'
             className='block w-[220px] rounded-md border border-gray-200 focus:outline-none focus:ring-1 focus:ring-gray-300 focus:border-gray-300 p-2 text-sm'
           />
-          <button className='absolute top-0 end-0 p-2.5 bg-gray-300 rounded-md text-slate-700 font-medium w-10 h-full flex justify-center items-center'>
-            <SearchIcon />
-          </button>
+          <div className='absolute top-0 end-0 p-2.5 bg-gray-300 rounded-md text-slate-700 font-medium w-10 h-full flex justify-center items-center'>
+            <FilterIcon />
+          </div>
         </section>
         <ModalSale />
       </div>
