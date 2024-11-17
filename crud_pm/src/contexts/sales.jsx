@@ -6,14 +6,20 @@ export default function SalesProvider({ children }) {
   const [sales, setSales] = useState(null) // Para detectar un estado global
   const [filter, setFilter] = useState([])
 
+  console.log(sales)
+
   useEffect(() => {
     fetchSales()
   }, [])
 
   const filterSales = (searchTerm) => {
-    const filteredSales = sales.filter((sale) =>
-      sale.name.toLowerCase().includes(searchTerm.toLowerCase())
-    )
+    console.log(searchTerm)
+    if (searchTerm === 'All') {
+      setFilter(sales)
+      return
+    }
+    const filteredSales = sales.filter((sale) => sale.product_id == searchTerm)
+
     setFilter(filteredSales)
   }
 
@@ -59,7 +65,7 @@ export default function SalesProvider({ children }) {
   return (
     <SalesContext.Provider
       value={{
-        sales,
+        sales: filter,
         addSale,
         updateSale,
         deleteSale,
