@@ -8,9 +8,6 @@ import ModalUpdateSale from './modals/ModalUpdateSale'
 export default function SalesTable({ sales }) {
   const { deleteSale } = useSale()
   const { products } = useProduct()
-  const handleEdit = () => {
-    console.log('hola')
-  }
 
   return (
     <div className='text-sm'>
