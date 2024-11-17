@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import useProduct from '../../hooks/useProduct'
 import CloseIcon from '../../icons/close'
+import useSale from '../../hooks/useSale'
 
-export default function ModalUpdateSale({ sale, updateSale }) {
+export default function ModalUpdateSale({ sale }) {
   const [isOpen, setIsOpen] = useState(false)
 
-  const { products } = useProduct()
+  const { updateSale } = useSale()
 
   const handleOpen = () => setIsOpen(true)
   const handleClose = () => setIsOpen(false)
