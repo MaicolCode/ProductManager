@@ -4,10 +4,18 @@ export const SalesContext = createContext()
 
 export default function SalesProvider({ children }) {
   const [sales, setSales] = useState(null) // Para detectar un estado global
+  const [filter, setFilter] = useState([])
 
   useEffect(() => {
     fetchSales()
   }, [])
+
+  const filterSales = (searchTerm) => {
+    const filteredSales = sales.filter((sale) =>
+      sale.name.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+    setFilter(filteredSales)
+  }
 
   const addSale = async (sale) => {
     await fetch(`http://localhost:3000/sales/add`, {
@@ -45,6 +53,7 @@ export default function SalesProvider({ children }) {
     const res = await fetch(`http://localhost:3000/sales`)
     const result = await res.json()
     setSales(result.sales)
+    setFilter(result.sales)
   }
 
   return (
@@ -53,7 +62,8 @@ export default function SalesProvider({ children }) {
         sales,
         addSale,
         updateSale,
-        deleteSale
+        deleteSale,
+        filterSales
       }}
     >
       {children}
