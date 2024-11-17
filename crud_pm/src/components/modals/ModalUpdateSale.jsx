@@ -56,7 +56,7 @@ export default function ModalUpdateSale({ sale, updateSale }) {
                 readOnly
                 className='border border-slate-400 border-opacity-40 rounded-lg p-2'
               />
-              <label className='text-gray-700'>Cantidad a vendida:</label>
+              <label className='text-gray-700'>Cantidad a vender:</label>
               <input
                 type='number'
                 step={1}
