@@ -9,7 +9,7 @@ export default function Sales() {
   fetchProducts()
 
   return (
-    <div className='w-full p-4'>
+    <div className='w-full h-full sm:p-4'>
       <h2 className='text-2xl font-semibold text-slate-700 my-6'>
         Listado de ventas
       </h2>
