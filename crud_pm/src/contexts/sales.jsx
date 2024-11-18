@@ -6,14 +6,11 @@ export default function SalesProvider({ children }) {
   const [sales, setSales] = useState(null) // Para detectar un estado global
   const [filter, setFilter] = useState([])
 
-  console.log(sales)
-
   useEffect(() => {
     fetchSales()
   }, [])
 
   const filterSales = (searchTerm) => {
-    console.log(searchTerm)
     if (searchTerm === 'All') {
       setFilter(sales)
       return
