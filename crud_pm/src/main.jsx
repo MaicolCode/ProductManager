@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client'
-import Dashboard from './routes/Dashboard.jsx'
+import Layout from './routes/Layout.jsx'
 import './styles.css'
 import {
   createBrowserRouter,
@@ -8,7 +8,7 @@ import {
   Route
 } from 'react-router-dom'
 import Login from './routes/Login.jsx'
-import ErrorPage from './pages/ErrorPage.jsx'
+import ErrorPage from './pages/ErrorPages/ErrorPage.jsx'
 import ProtectedRoute from './routes/ProtectedRoute.jsx'
 import AuthProvider from './auth/AuthProvider.jsx'
 import SignUp from './routes/SignUp.jsx'
@@ -23,7 +23,7 @@ const router = createBrowserRouter(
         errorElement={<ErrorPage />}
       ></Route>
       <Route element={<ProtectedRoute />}>
-        <Route path='/dashboard/*' element={<Dashboard />} />
+        <Route path='/dashboard/*' element={<Layout />} />
       </Route>
     </>
   )
