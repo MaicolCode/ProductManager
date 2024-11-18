@@ -142,7 +142,7 @@ export default function AuthProvider({ children }) {
         signOut
       }}
     >
-      {isLoading ? <Loader /> : children}
+      <div className='h-screen w-full'>{isLoading ? <Loader /> : children}</div>
     </AuthUserContext.Provider>
   )
 }
