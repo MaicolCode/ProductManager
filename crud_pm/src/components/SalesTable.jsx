@@ -14,14 +14,14 @@ export default function SalesTable({ sales }) {
   }
 
   return (
-    <div className='text-sm'>
+    <div className='text-xs sm:text-sm h-[70%]'>
       <div className='flex justify-between gap-5 my-4'>
         <section className='relative h-full '>
           <select
             name='sale'
             id='sale'
             onClick={handleSearch}
-            className='block w-[220px] rounded-md z-10 border border-gray-200 focus:outline-none focus:ring-1 focus:ring-gray-300 focus:border-gray-300 p-2 text-sm'
+            className='block w-[200px] sm:w-[220px] rounded-md z-10 border border-gray-200 focus:outline-none focus:ring-1 focus:ring-gray-300 focus:border-gray-300 p-2 text-xs sm:text-sm'
           >
             <option value='All'>Todas las ventas</option>
             {products.map((item) => (
@@ -40,53 +40,59 @@ export default function SalesTable({ sales }) {
         </section>
         <ModalSale />
       </div>
-      <div className='shadow-[0_3px_7px_1px_rgba(0,0,0,0.1)] rounded-lg pb-4 flex gap-5'>
-        <table className=' w-[100%] table-auto' cellPadding={10}>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nombre</th>
-              <th>Precio</th>
-              <th>Cantidad</th>
-              <th>Total</th>
-              <th>Fecha</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {sales.map((item) => (
-              <tr key={item.id} className='odd:bg-slate-100'>
-                <td>{item.id}</td>
-
-                <td>{products?.find((p) => p.id === item.product_id).name}</td>
-                <td>{products?.find((p) => p.id === item.product_id).price}</td>
-                <td>{item.quantity_sold}</td>
-                <td>
-                  {(
-                    item.quantity_sold *
-                    products?.find((p) => p.id === item.product_id).price
-                  ).toFixed(2)}
-                </td>
-                <td>{item.date_sale}</td>
-                <td className='flex justify-end items-center gap-2 px-3 py-2'>
-                  <ButtonDelete
-                    title={'Eliminar'}
-                    color={'red'}
-                    onDelete={deleteSale}
-                    identifier={item.id}
-                  />
-                  <ModalUpdateSale
-                    sale={{
-                      ...item,
-                      product: products?.find((p) => p.id === item.product_id)
-                        .name
-                    }}
-                  />
-                </td>
+      <div className='w-full h-[100%] shadow-[0_3px_7px_1px_rgba(0,0,0,0.1)] overflow-y-scroll sm:overflow-auto rounded-lg pb-4 flex gap-5'>
+        <div className='w-full'>
+          <table className=' w-[100%] table-auto' cellPadding={10}>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Total</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {sales.map((item) => (
+                <tr key={item.id} className='odd:bg-slate-100'>
+                  <td>{item.id}</td>
+
+                  <td>
+                    {products?.find((p) => p.id === item.product_id).name}
+                  </td>
+                  <td>
+                    {products?.find((p) => p.id === item.product_id).price}
+                  </td>
+                  <td>{item.quantity_sold}</td>
+                  <td>
+                    {(
+                      item.quantity_sold *
+                      products?.find((p) => p.id === item.product_id).price
+                    ).toFixed(2)}
+                  </td>
+                  <td>{item.date_sale}</td>
+                  <td className='flex justify-end items-center gap-2 px-3 py-2'>
+                    <ButtonDelete
+                      title={'Eliminar'}
+                      color={'red'}
+                      onDelete={deleteSale}
+                      identifier={item.id}
+                    />
+                    <ModalUpdateSale
+                      sale={{
+                        ...item,
+                        product: products?.find((p) => p.id === item.product_id)
+                          .name
+                      }}
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   )
