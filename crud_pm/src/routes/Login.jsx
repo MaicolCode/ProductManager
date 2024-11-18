@@ -47,8 +47,8 @@ export default function Login() {
   }
 
   return (
-    <div className='rounded-lg w-screen h-full box-border flex justify-center'>
-      <div className='w-[100vh] h-[100vh] flex items-center justify-center'>
+    <div className='rounded-lg w-full h-full'>
+      <div className='w-full h-full flex items-center justify-center'>
         <section className='flex flex-col items-center justify-center px-10 py-5 rounded-lg shadow-xl'>
           <img
             src='./public/Images/logo.png'
@@ -57,10 +57,12 @@ export default function Login() {
             height={'80px'}
             className='rounded-full'
           />
-          <h2 className='text-center mb-2 text-lg'>Inicio de sesion</h2>
+          <h2 className='text-center mb-2 text-md sm:text-lg'>
+            Inicio de sesion
+          </h2>
           {errorMessage && <ErrorMessage message={errorMessage} />}
           <form
-            className='w-[360px] flex flex-col justify-center gap-3 p-4 text-sm'
+            className='w-[250px] sm:w-[360px] flex flex-col justify-center gap-3 sm:p-4 text-xs sm:text-sm'
             onSubmit={handleSubmit}
           >
             <label htmlFor='username'>Usuario</label>
