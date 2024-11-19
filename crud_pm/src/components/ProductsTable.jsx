@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useProduct } from '../hooks/useProduct'
 import FilterIcon from '../icons/Filter'
 import ButtonDelete from './ButtonDelete'
@@ -5,7 +6,10 @@ import ModalProduct from './modals/ModalProduct'
 import ModalProductUpdate from './modals/ModalUpdateProduct'
 
 export default function ProductsTable({ products }) {
-  const { deleteProduct, filterProducts } = useProduct()
+  const { deleteProduct, filterProducts, fetchProducts } = useProduct()
+  useEffect(() => {
+    fetchProducts()
+  }, [])
 
   const handleSearch = (e) => {
     filterProducts(e.target.value)
@@ -45,12 +49,12 @@ export default function ProductsTable({ products }) {
               </tr>
             </thead>
             <tbody className='text-center '>
-              {products.map((item) => (
-                <tr key={item.id} className='odd:bg-slate-100'>
-                  <td>{item.id}</td>
+              {products.map((item, key) => (
+                <tr key={key + 1} className='odd:bg-slate-100'>
+                  <td>{key + 1}</td>
                   <td>{item.name}</td>
                   <td>{item.quantity}</td>
-                  <td>{item.price}</td>
+                  <td>{parseFloat(item.price).toFixed(2)}</td>
 
                   <td className='flex justify-end items-center gap-2 px-3 py-2'>
                     <ButtonDelete
