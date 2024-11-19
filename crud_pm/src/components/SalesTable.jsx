@@ -55,9 +55,9 @@ export default function SalesTable({ sales }) {
               </tr>
             </thead>
             <tbody>
-              {sales.map((item) => (
-                <tr key={item.id} className='odd:bg-slate-100'>
-                  <td>{item.id}</td>
+              {sales.map((item, key) => (
+                <tr key={key + 1} className='odd:bg-slate-100'>
+                  <td>{key + 1}</td>
 
                   <td>
                     {products?.find((p) => p.id === item.product_id).name}
