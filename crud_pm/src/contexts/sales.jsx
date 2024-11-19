@@ -49,7 +49,7 @@ export default function SalesProvider({ children }) {
       method: 'DELETE'
     })
 
-    setSales(sales.filter((sale) => sale.id !== id))
+    fetchSales()
   }
 
   async function fetchSales() {
