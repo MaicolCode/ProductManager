@@ -1,12 +1,9 @@
 import useSale from '../hooks/useSale'
 import SalesTable from '../components/SalesTable'
 import Loader from '../components/loader/Loader'
-import { useProduct } from '../hooks/useProduct'
 
 export default function Sales() {
   const { sales } = useSale()
-  const { fetchProducts } = useProduct()
-  fetchProducts()
 
   return (
     <div className='w-full h-full sm:p-4'>
