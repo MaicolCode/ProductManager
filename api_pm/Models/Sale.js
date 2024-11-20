@@ -1,19 +1,19 @@
 import { connection } from '../utils/connection.js'
 
 export default class Sale {
-  static async getAll () {
+  static async getAll() {
     const [sales] = await connection.query('SELECT * FROM sales')
     return sales
   }
 
-  static async getById (id) {
+  static async getById(id) {
     const [sale] = await connection.query('SELECT * FROM sales WHERE id = ?', [
       id
     ])
     return sale[0]
   }
 
-  static async create (productID, quantity) {
+  static async create(productID, quantity) {
     try {
       await connection.query(
         'INSERT INTO sales (product_id, quantity_sold) VALUES (?,?)',
@@ -26,7 +26,7 @@ export default class Sale {
     return sales[sales.length - 1]
   }
 
-  static async update (id, data) {
+  static async update(id, data) {
     try {
       await connection.query('UPDATE sales SET ? WHERE id = ?', [data, id])
     } catch (error) {
@@ -41,7 +41,7 @@ export default class Sale {
     return 'Venta actualizada con exito'
   }
 
-  static async delete (id) {
+  static async delete(id) {
     const [sale] = await connection.query('SELECT * FROM sales WHERE id = ?', [
       id
     ])
@@ -56,5 +56,21 @@ export default class Sale {
     }
 
     return 'Venta eliminada con exito'
+  }
+
+  static async report() {
+    try {
+      const [sales] = await connection.query(
+        'SELECT DATE(date_sale) 	AS date_sale, SUM(quantity_sold) quantity_sale FROM sales group by DATE(date_sale)'
+      )
+      if (sales) {
+        return sales
+      } else {
+        return { message: 'sales not informed' }
+      }
+    } catch (error) {
+      return error
+    }
+    return 'Venta actualizada con exito'
   }
 }

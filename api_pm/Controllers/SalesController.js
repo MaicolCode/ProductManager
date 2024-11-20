@@ -1,20 +1,20 @@
 import Sale from '../Models/Sale.js'
 
 export default class SalesController {
-  static async getAll (req, res) {
+  static async getAll(req, res) {
     const sales = await Sale.getAll()
     return res.json({
       sales
     })
   }
 
-  static async getById (req, res) {
+  static async getById(req, res) {
     const { id } = req.params
     const sale = await Sale.getById(id)
     return res.json({ sale })
   }
 
-  static async create (req, res) {
+  static async create(req, res) {
     const { productID, quantity } = req.body
 
     const result = await Sale.create(productID, quantity)
@@ -22,7 +22,7 @@ export default class SalesController {
     res.json({ sale: result })
   }
 
-  static async update (req, res) {
+  static async update(req, res) {
     const { id } = req.params
     const data = req.body
 
@@ -31,11 +31,16 @@ export default class SalesController {
     res.json({ message: result })
   }
 
-  static async delete (req, res) {
+  static async delete(req, res) {
     const { id } = req.params
 
     const result = await Sale.delete(id)
 
     res.json({ message: result })
+  }
+
+  static async report(req, res) {
+    const result = await Sale.report()
+    res.json({ result: result })
   }
 }

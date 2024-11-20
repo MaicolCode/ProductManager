@@ -1,5 +1,6 @@
 import express from 'express'
 import SalesController from '../Controllers/SalesController.js'
+import { connection } from '../utils/connection.js'
 
 const salesRouter = express.Router()
 
@@ -12,5 +13,7 @@ salesRouter.post('/add', SalesController.create)
 salesRouter.put('/:id', SalesController.update)
 
 salesRouter.delete('/:id', SalesController.delete)
+
+salesRouter.get('/informe/sales', SalesController.report)
 
 export default salesRouter
