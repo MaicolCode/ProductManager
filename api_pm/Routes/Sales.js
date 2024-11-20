@@ -1,6 +1,5 @@
 import express from 'express'
 import SalesController from '../Controllers/SalesController.js'
-import { connection } from '../utils/connection.js'
 
 const salesRouter = express.Router()
 
