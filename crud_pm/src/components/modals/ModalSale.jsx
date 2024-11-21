@@ -57,7 +57,11 @@ export default function ModalSale() {
                 className='border border-slate-400 border-opacity-40 rounded-lg p-2'
               >
                 {products.map((item) => (
-                  <option key={item.id} value={item.id}>
+                  <option
+                    key={item.id}
+                    value={item.id}
+                    disabled={item.quantity === 0}
+                  >
                     {item.name}
                   </option>
                 ))}
