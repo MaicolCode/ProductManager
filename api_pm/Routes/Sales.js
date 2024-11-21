@@ -13,6 +13,10 @@ salesRouter.put('/:id', SalesController.update)
 
 salesRouter.delete('/:id', SalesController.delete)
 
-salesRouter.get('/informe/sales', SalesController.report)
+salesRouter.get('/report/byMonths', SalesController.report)
+
+salesRouter.get('/report/best-sellers', SalesController.bestSellers)
+
+salesRouter.get('/report/best-gain', SalesController.bestGain)
 
 export default salesRouter
