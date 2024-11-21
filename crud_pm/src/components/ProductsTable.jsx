@@ -50,7 +50,12 @@ export default function ProductsTable({ products }) {
             </thead>
             <tbody className='text-center '>
               {products.map((item, key) => (
-                <tr key={key + 1} className='odd:bg-slate-100'>
+                <tr
+                  key={key + 1}
+                  className={`odd:bg-slate-100 ${
+                    item.quantity === 0 ? 'text-red-500' : ''
+                  }`}
+                >
                   <td>{key + 1}</td>
                   <td>{item.name}</td>
                   <td>{item.quantity}</td>
