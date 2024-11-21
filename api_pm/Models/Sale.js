@@ -61,7 +61,7 @@ export default class Sale {
   static async report() {
     try {
       const [sales] = await connection.query(
-        'SELECT DATE(date_sale) 	AS date_sale, SUM(quantity_sold) quantity_sale FROM sales group by DATE(date_sale)'
+        'SELECT MONTH(date_sale) AS month_sales, SUM(quantity_sold) AS quantity_sold FROM sales GROUP BY month_sales ORDER BY month_sales'
       )
       if (sales) {
         return sales
@@ -71,6 +71,35 @@ export default class Sale {
     } catch (error) {
       return error
     }
-    return 'Venta actualizada con exito'
+  }
+
+  static async bestSellers() {
+    try {
+      const [sales] = await connection.query(
+        'SELECT p.id AS product_id, p.name AS name, SUM(s.quantity_sold) AS quantity_sold, p.price AS price FROM products p JOIN sales s ON p.id = s.product_id GROUP BY p.id ORDER BY quantity_sold desc LIMIT 1'
+      )
+      if (sales) {
+        return sales
+      } else {
+        return { message: 'sales not informed' }
+      }
+    } catch (error) {
+      return error
+    }
+  }
+
+  static async bestGain() {
+    try {
+      const [sales] = await connection.query(
+        'SELECT p.id AS product_id, p.name AS name, SUM(quantity_sold) quantity_sale,SUM(p.price) AS best_price FROM products p JOIN sales s ON p.id = s.product_id GROUP BY p.id ORDER BY best_price desc LIMIT 1'
+      )
+      if (sales) {
+        return sales
+      } else {
+        return { message: 'sales not informed' }
+      }
+    } catch (error) {
+      return error
+    }
   }
 }
