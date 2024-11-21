@@ -61,7 +61,7 @@ export default function ProductsTable({ products }) {
                   <td>{item.quantity}</td>
                   <td>{parseFloat(item.price).toFixed(2)}</td>
 
-                  <td className='flex justify-end items-center gap-2 px-3 py-2'>
+                  <td className='flex justify-end items-center gap-2 px-3 py-2 text-slate-700'>
                     <ButtonDelete
                       title={'Eliminar'}
                       color={'red'}
