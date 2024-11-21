@@ -51,6 +51,7 @@ export default function Layout() {
           <ProductProvider>
             <Routes>
               <Route index={true} element={<Dashboard />} />
+              <Route path='/inicio' element={<Dashboard />} />
               <Route path='/products' element={<Products />} />
               <Route path='/sales' element={<Sales />} />
               <Route path='*' element={<ErrorPageLayout />} />
@@ -85,6 +86,17 @@ function Navigation({ action }) {
             </div>
           </article>
 
+          <NavLink
+            to={`/dashboard/inicio`}
+            className={({ isActive }) =>
+              isActive
+                ? 'p-3 bg-gray-300 text-slate-500 bg-opacity-40 rounded-md flex items-center gap-2'
+                : 'p-3 bg-gray-200 text-slate-500 bg-opacity-40 rounded-md flex items-center gap-2'
+            }
+          >
+            <ArrowIcon />
+            Inicio
+          </NavLink>
           <NavLink
             to={`/dashboard/products`}
             className={({ isActive }) =>
@@ -168,6 +180,17 @@ function Hamburger({ action }) {
               </div>
             </article>
 
+            <NavLink
+              to={`/dashboard/inicio`}
+              className={({ isActive }) =>
+                isActive
+                  ? 'p-3 bg-gray-300 text-slate-500 bg-opacity-40 rounded-md flex items-center gap-2'
+                  : 'p-3 bg-gray-200 text-slate-500 bg-opacity-40 rounded-md flex items-center gap-2'
+              }
+            >
+              <ArrowIcon />
+              Inicio
+            </NavLink>
             <NavLink
               to={`/dashboard/products`}
               className={({ isActive }) =>
