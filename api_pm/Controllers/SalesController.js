@@ -43,4 +43,14 @@ export default class SalesController {
     const result = await Sale.report()
     res.json({ result: result })
   }
+
+  static async bestSellers(req, res) {
+    const result = await Sale.bestSellers()
+    res.json({ result: result })
+  }
+
+  static async bestGain(req, res) {
+    const result = await Sale.bestGain()
+    res.json({ result: result })
+  }
 }
