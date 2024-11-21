@@ -6,8 +6,10 @@ import useSale from '../../hooks/useSale'
 export default function ModalSale() {
   const [isOpen, setIsOpen] = useState(false)
   const { addSale } = useSale()
+  const [cantidad, setCantidad] = useState(0)
 
-  const { products } = useProduct()
+  const { products, fetchProducts } = useProduct()
+  fetchProducts()
 
   const handleOpen = () => setIsOpen(true)
   const handleClose = () => setIsOpen(false)
@@ -23,6 +25,12 @@ export default function ModalSale() {
 
     addSale(newSale)
     handleClose()
+  }
+
+  const handleClick = (e) => {
+    const idProduct = e.target.value
+    const product = products.find((item) => item.id == idProduct)
+    setCantidad(product.quantity)
   }
 
   return (
@@ -54,13 +62,15 @@ export default function ModalSale() {
               <label className='text-gray-700'>Seleccionar producto:</label>
               <select
                 name='productID'
-                className='border border-slate-400 border-opacity-40 rounded-lg p-2'
+                className='w-[300px] sm:w-full border border-slate-400 border-opacity-40 rounded-lg p-2 text-xs sm:text-sm'
+                onClick={handleClick}
               >
                 {products.map((item) => (
                   <option
                     key={item.id}
                     value={item.id}
                     disabled={item.quantity === 0}
+                    className={`${item.quantity === 0 ? 'text-red-400' : ''}`}
                   >
                     {item.name}
                   </option>
@@ -71,6 +81,7 @@ export default function ModalSale() {
                 type='number'
                 step={1}
                 min={0}
+                max={cantidad}
                 name='quantity'
                 className='border border-slate-400 border-opacity-40 rounded-lg p-2'
               />
