@@ -17,11 +17,9 @@ loginRouter.post('/', async (req, res) => {
   }
 
   const [user] = await connection.query(
-    'SELECT BIN_TO_UUID(id) AS id, name, username, password FROM users WHERE username = ?',
+    'SELECT name, username, password, permissions, type  FROM users u, user_type ut WHERE u.username = ? AND u.permissions = ut.id;',
     [username]
   )
-
-  console.log(user[0])
 
   if (user.length > 0) {
     const isCorrect = await verifyPassword(password, user[0].password)
