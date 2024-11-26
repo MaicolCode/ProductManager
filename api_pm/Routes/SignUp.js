@@ -24,7 +24,7 @@ signUpRouter.post('/', async (req, res) => {
 
   try {
     await connection.query(
-      'INSERT INTO users (id, name, username, password) VALUES (UUID_TO_BIN(UUID()), ?, ?, ?)',
+      'INSERT INTO users (id, name, username, password, permissions) VALUES (UUID_TO_BIN(UUID()), ?, ?, ?, 2)',
       [name, username, newPassword]
     )
     return res.status(200).json({ message: 'Sign up successful' })
