@@ -26,9 +26,10 @@ export default function Dashboard() {
         Informe general de inventarios.
       </h3>
       <hr className='mt-3 w-full border-slate-200' />
-      <div className='p-2 grid mt-5  grid-cols-1 sm:grid-cols-2 gap-4 h-[73%] sm:h-auto overflow-y-scroll sm:overflow-hidden'>
+      <div className='p-2 grid mt-5  grid-cols-1 sm:grid-cols-2 sm:row-span-3 gap-4 h-[73%] sm:h-auto overflow-y-scroll sm:overflow-hidden'>
         <SalesReport />
         <ProductsInStock />
+        <BestSellers />
         <BestSellers />
       </div>
     </section>
@@ -36,10 +37,6 @@ export default function Dashboard() {
 }
 
 function SalesReport() {
-  const { products } = useProduct()
-
-  console.log(products)
-
   const [report, setReport] = useState([])
   const filterSales = new Array(12).fill(0) // Arreglo que contendra la cantidad de ventas por mes
 
@@ -58,6 +55,7 @@ function SalesReport() {
     const date = item.month_sales - 1
     filterSales[date] += parseInt(item.quantity_sold)
   })
+
   return (
     <div className='p-3 h-[380px] sm:h-[430px] rounded-md shadow-[0_5px_10px_1px_rgba(0,0,0,0.10)] bg-gray-50 flex flex-col gap-2 justify-center items-center'>
       <span className='text-md font-medium text-slate-600 text-start w-full p-2'>
@@ -116,7 +114,6 @@ function SalesReport() {
 
 function ProductsInStock() {
   const { products } = useProduct()
-  const { sales } = useSale()
   const [report, setReport] = useState([])
 
   useEffect(() => {
@@ -169,7 +166,7 @@ function ProductsInStock() {
             className='w-4 h-4 bg-slate-200 rounded-md'
             onChange={handleChange}
           />
-          <span className='text-sm text-slate-500'>Sin existencias</span>
+          <span className='text-sm text-slate-500'>Agotado</span>
         </label>
       </div>
       <ul
@@ -199,7 +196,7 @@ function ProductsInStock() {
                   : 'bg-lime-300 text-green-600'
               } rounded-md bg-opacity-60`}
             >
-              {item.quantity === 0 ? 'Sin existencias' : 'En stock'}
+              {item.quantity === 0 ? 'Agotado' : 'En stock'}
             </span>
           </li>
         ))}
@@ -248,7 +245,7 @@ function BestSellers() {
   }
 
   return (
-    <div className='p-2 rounded-md shadow-[0_5px_10px_1px_rgba(0,0,0,0.10)] bg-gray-50 flex flex-col gap-2 justify-center items-center'>
+    <div className='p-2 h-[250px] rounded-md shadow-[0_5px_10px_1px_rgba(0,0,0,0.10)] bg-gray-50 flex flex-col gap-2 justify-center items-center'>
       <span className='text-md font-medium text-slate-600 text-start w-full p-2'>
         Reporte de mejores ventas.
       </span>
@@ -308,7 +305,7 @@ function BestSellers() {
             <section className='flex flex-col gap-2 bg-gradient-to-r from-slate-200 to-slate-100 rounded-md p-3 w-full'>
               <div className='flex  flex-col gap-2'>
                 <span className='text-xs text-slate-700'>Producto:</span>
-                <span className='text-sm sm:text-lg'>{bestGain[0].name}</span>
+                <span className='text-sm'>{bestGain[0].name}</span>
               </div>
               <div className='flex  flex-col gap-2'>
                 <span className='text-xs text-slate-700'>
