@@ -67,6 +67,7 @@ export default function Layout() {
 function Navigation({ action }) {
   const { getUser } = useAuthUser()
   const user = getUser()
+  console.log(user)
   return (
     <>
       <nav className='h-screen w-[200px] hidden sm:flex flex-col justify-between  gap-5 py-3 px-2 bg-slate-100 rounded-tl-md rounded-bl-lg text-sm'>
@@ -78,8 +79,8 @@ function Navigation({ action }) {
               className='w-16 h-16 rounded-full'
             />
             <div className='flex flex-col gap-0'>
-              <span className='absolute end-5 top-0 text-xs text-center text-white bg-red-300 rounded-lg p-1 w-[40px]'>
-                user
+              <span className='absolute end-5 top-0 text-xs text-center text-white bg-red-300 rounded-lg p-1 w-auto'>
+                {user.type}
               </span>
               <span className='text-xs text-slate-400'>{user.name}</span>
               <span>{user.username}</span>
@@ -172,8 +173,8 @@ function Hamburger({ action }) {
                 className='w-16 h-16 rounded-full'
               />
               <div className='flex flex-col gap-0'>
-                <span className='absolute end-5 top-0 text-xs text-center text-white bg-red-300 rounded-lg p-1 w-[40px]'>
-                  user
+                <span className='absolute end-5 top-0 text-xs text-center text-white bg-red-300 rounded-lg p-1 w-auto'>
+                  {user.type}
                 </span>
                 <span className='text-xs text-slate-400'>{user.name}</span>
                 <span>{user.username}</span>
