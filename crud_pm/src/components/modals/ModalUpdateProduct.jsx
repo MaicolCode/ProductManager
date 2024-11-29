@@ -29,7 +29,7 @@ export default function ModalProductUpdate({ product }) {
         onClick={handleOpen}
         className={`hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow bg-blue-500`}
       >
-        Update
+        Actualizar
       </button>
       {isOpen && (
         <div className='fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center'>
