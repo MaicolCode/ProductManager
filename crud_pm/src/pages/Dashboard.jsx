@@ -30,7 +30,6 @@ export default function Dashboard() {
         <SalesReport />
         <ProductsInStock />
         <BestSellers />
-        <BestSellers />
       </div>
     </section>
   )
