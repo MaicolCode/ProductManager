@@ -23,7 +23,7 @@ app.use('/products', productRouter)
 app.use('/sales', salesRouter)
 app.use('/login', loginRouter)
 app.use('/refresh-token', refreshTokenRouter)
-app.use('/user', authenticate, usersRouter)
+app.use('/user', usersRouter)
 app.use('/signup', signUpRouter)
 app.use('/signout', signOutRouter)
 

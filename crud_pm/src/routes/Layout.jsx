@@ -3,7 +3,14 @@ import { useAuthUser } from '../auth/AuthProvider'
 import { API_URL } from '../auth/constants'
 import Products from '../pages/Products'
 import Sales from '../pages/Sales'
-import { Routes, Route, Outlet, NavLink } from 'react-router-dom'
+import {
+  Routes,
+  Route,
+  Outlet,
+  NavLink,
+  useNavigate,
+  Navigate
+} from 'react-router-dom'
 import MenuIcon from '../icons/Menu'
 import CloseIcon from '../icons/close'
 import ProductProvider from '../contexts/product'
@@ -12,9 +19,13 @@ import ErrorPageLayout from '../pages/ErrorPages/ErrorPageLayout'
 import ArrowIcon from '../icons/Arrow'
 import OffIcon from '../icons/Off'
 import Dashboard from '../pages/Dashboard'
+import Users from '../pages/Users'
+import UsersProvider from '../contexts/users'
 
 export default function Layout() {
   const { getRefreshToken, signOut } = useAuthUser()
+  const { getUser } = useAuthUser()
+  const user = getUser()
 
   async function handleClick() {
     try {
@@ -54,6 +65,16 @@ export default function Layout() {
               <Route path='/inicio' element={<Dashboard />} />
               <Route path='/products' element={<Products />} />
               <Route path='/sales' element={<Sales />} />
+              {user.type === 'admin' && (
+                <Route
+                  path='/users'
+                  element={
+                    <UsersProvider>
+                      <Users />
+                    </UsersProvider>
+                  }
+                />
+              )}
               <Route path='*' element={<ErrorPageLayout />} />
             </Routes>
           </ProductProvider>
@@ -121,17 +142,19 @@ function Navigation({ action }) {
             <ArrowIcon />
             Ventas
           </NavLink>
-          <NavLink
-            to={`/dashboard/users`}
-            className={({ isActive }) =>
-              isActive
-                ? 'p-3 bg-gray-300 text-slate-500 bg-opacity-40 rounded-md flex items-center gap-2'
-                : 'p-3 bg-gray-200 text-slate-500 bg-opacity-40 rounded-md flex items-center gap-2'
-            }
-          >
-            <ArrowIcon />
-            Usuarios
-          </NavLink>
+          {user.type === 'admin' && (
+            <NavLink
+              to={`/dashboard/users`}
+              className={({ isActive }) =>
+                isActive
+                  ? 'p-3 bg-gray-300 text-slate-500 bg-opacity-40 rounded-md flex items-center gap-2'
+                  : 'p-3 bg-gray-200 text-slate-500 bg-opacity-40 rounded-md flex items-center gap-2'
+              }
+            >
+              <ArrowIcon />
+              Usuarios
+            </NavLink>
+          )}
         </section>
         <button
           className='p-3 bg-gray-200 rounded-lg text-slate-500 flex justify-center items-center gap-2'
