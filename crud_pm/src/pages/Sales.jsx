@@ -1,5 +1,5 @@
 import useSale from '../hooks/useSale'
-import SalesTable from '../components/SalesTable'
+import SalesTable from '../components/tables/SalesTable'
 import Loader from '../components/loader/Loader'
 
 export default function Sales() {
