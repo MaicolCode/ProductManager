@@ -23,7 +23,11 @@ const router = createBrowserRouter(
         errorElement={<ErrorPage />}
       ></Route>
       <Route element={<ProtectedRoute />}>
-        <Route path='/dashboard/*' element={<Layout />} />
+        <Route
+          path='/dashboard/*'
+          element={<Layout />}
+          errorElement={<ErrorPage />}
+        />
       </Route>
     </>
   )
