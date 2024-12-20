@@ -15,29 +15,7 @@ export default function UsersTable({ users }) {
 
   return (
     <div className='text-xs sm:text-sm h-[70%]'>
-      <div className='flex justify-between gap-5 my-4'>
-        <section className='relative h-full '>
-          <select
-            name='sale'
-            id='sale'
-            onClick={handleSearch}
-            className='block w-[200px] sm:w-[220px] rounded-md z-10 border border-gray-200 focus:outline-none focus:ring-1 focus:ring-gray-300 focus:border-gray-300 p-2 text-xs sm:text-sm'
-          >
-            <option value='All'>Todas las ventas</option>
-            {users.map((user) => (
-              <option key={user.id} value={user.id}>
-                {user.name}
-              </option>
-            ))}
-          </select>
-
-          <label
-            htmlFor='sale'
-            className='absolute top-0 end-0 z-0 p-2.5 bg-gray-300 rounded-md text-slate-700 font-medium w-10 h-full flex justify-center items-center'
-          >
-            <FilterIcon />
-          </label>
-        </section>
+      <div className='flex justify-end gap-5 my-4'>
         <ModalSale />
       </div>
       <div className='w-full h-[100%] shadow-[0_3px_7px_1px_rgba(0,0,0,0.1)] overflow-y-scroll sm:overflow-auto rounded-lg pb-4 flex gap-5'>
