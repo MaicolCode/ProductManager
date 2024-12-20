@@ -8,7 +8,8 @@ export function useProduct() {
     updateProduct,
     deleteProduct,
     fetchProducts,
-    filterProducts
+    filterProducts,
+    filterProductsByCategory
   } = useContext(ProductContext)
 
   return {
@@ -17,6 +18,7 @@ export function useProduct() {
     updateProduct,
     deleteProduct,
     fetchProducts,
-    filterProducts
+    filterProducts,
+    filterProductsByCategory
   }
 }
