@@ -21,6 +21,7 @@ import OffIcon from '../icons/Off'
 import Dashboard from '../pages/Dashboard'
 import Users from '../pages/Users'
 import UsersProvider from '../contexts/users'
+import CategoryProvider from '../contexts/category'
 
 export default function Layout() {
   const { getRefreshToken, signOut } = useAuthUser()
@@ -63,7 +64,14 @@ export default function Layout() {
             <Routes>
               <Route index={true} element={<Dashboard />} />
               <Route path='/inicio' element={<Dashboard />} />
-              <Route path='/products' element={<Products />} />
+              <Route
+                path='/products'
+                element={
+                  <CategoryProvider>
+                    <Products />
+                  </CategoryProvider>
+                }
+              />
               <Route path='/sales' element={<Sales />} />
               {user.type === 'admin' && (
                 <Route
