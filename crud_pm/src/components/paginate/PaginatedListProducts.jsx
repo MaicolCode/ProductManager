@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useAuthUser } from '../../auth/AuthProvider'
 import { useProduct } from '../../hooks/useProduct'
 import ButtonDelete from '../ButtonDelete'
@@ -13,6 +13,10 @@ export default function PaginatedListProducts({ products }) {
   const data = products // Datos simulados
   const itemsPerPage = 8 // Elementos por página
   const [currentPage, setCurrentPage] = useState(1)
+
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [data])
 
   // Cálculo de los elementos para la página actual
   const startIndex = (currentPage - 1) * itemsPerPage
