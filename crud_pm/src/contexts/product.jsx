@@ -17,6 +17,18 @@ export default function ProductProvider({ children }) {
     setFilter(filteredProducts)
   }
 
+  const filterProductsByCategory = (searchTerm) => {
+    if (searchTerm === 'All') {
+      setFilter(products)
+      return
+    }
+
+    const filteredProducts = products.filter(
+      (product) => product.category === searchTerm
+    )
+    setFilter(filteredProducts)
+  }
+
   const addProduct = async (product) => {
     await fetch(`http://localhost:3000/products/add`, {
       method: 'POST',
@@ -64,7 +76,8 @@ export default function ProductProvider({ children }) {
         updateProduct,
         deleteProduct,
         fetchProducts,
-        filterProducts
+        filterProducts,
+        filterProductsByCategory
       }}
     >
       {children}
