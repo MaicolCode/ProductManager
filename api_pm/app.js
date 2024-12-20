@@ -9,6 +9,7 @@ import signUpRouter from './Routes/SignUp.js'
 import dotenv from 'dotenv'
 import { authenticate } from './auth/authenticate.js'
 import signOutRouter from './Routes/SignOut.js'
+import categoriesRouter from './Routes/Categories.js'
 
 dotenv.config()
 
@@ -20,6 +21,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cors())
 
 app.use('/products', productRouter)
+app.use('/categories', categoriesRouter)
 app.use('/sales', salesRouter)
 app.use('/login', loginRouter)
 app.use('/refresh-token', refreshTokenRouter)
