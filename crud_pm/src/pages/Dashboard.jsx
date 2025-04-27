@@ -186,7 +186,7 @@ function ProductsInStock() {
             } rounded-md bg-opacity-60 `}
           >
             <div className='flex gap-5 items-center w-2/4'>
-              <span>{item.name}</span>
+              <span>{item?.name}</span>
             </div>
             <span
               className={`p-2 ${
@@ -277,13 +277,13 @@ function BestSellers() {
             <section className='flex flex-col gap-2 bg-gradient-to-r from-slate-200 to-slate-100 rounded-md p-3 w-full'>
               <div className='flex  flex-col gap-2'>
                 <span className='text-xs text-slate-700'>Producto:</span>
-                <span>{bestSellers[0].name}</span>
+                <span>{bestSellers[0]?.name}</span>
               </div>
               <div className='flex  flex-col gap-2'>
                 <span className='text-xs text-slate-700'>
                   Ventas realizadas:{' '}
                 </span>
-                <span>{bestSellers[0].quantity_sold} unidades</span>
+                <span>{bestSellers[0]?.quantity_sold} unidades</span>
               </div>
             </section>
 
@@ -291,7 +291,7 @@ function BestSellers() {
               <span className='text-xs text-slate-700'>Ganancia obtenida:</span>
               <div className='bg-gradient-to-r from-slate-100 to-slate-200 rounded-md text-3xl  font-semibold h-full flex justify-center items-center'>
                 {parseFloat(
-                  bestSellers[0].price * bestSellers[0].quantity_sold
+                  bestSellers[0]?.price * bestSellers[0]?.quantity_sold
                 ).toFixed(2)}{' '}
                 $
               </div>
@@ -304,20 +304,20 @@ function BestSellers() {
             <section className='flex flex-col gap-2 bg-gradient-to-r from-slate-200 to-slate-100 rounded-md p-3 w-full'>
               <div className='flex  flex-col gap-2'>
                 <span className='text-xs text-slate-700'>Producto:</span>
-                <span className='text-sm'>{bestGain[0].name}</span>
+                <span className='text-sm'>{bestGain[0]?.name}</span>
               </div>
               <div className='flex  flex-col gap-2'>
                 <span className='text-xs text-slate-700'>
                   Ventas realizadas:{' '}
                 </span>
-                <span>{bestGain[0].quantity_sale} unidades</span>
+                <span>{bestGain[0]?.quantity_sale} unidades</span>
               </div>
             </section>
 
             <div className='flex flex-col gap-2 h-full w-full '>
               <span className='text-xs text-slate-700'>Ganancia obtenida:</span>
               <div className='bg-gradient-to-r from-slate-100 to-slate-200 rounded-md text-xl sm:text-3xl  font-semibold h-full flex justify-center items-center'>
-                {parseFloat(bestGain[0].best_price).toFixed(2)} $
+                {parseFloat(bestGain[0]?.best_price).toFixed(2)} $
               </div>
             </div>
           </div>
